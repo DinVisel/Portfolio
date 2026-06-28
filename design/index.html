@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevTerminal | Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-surface-variant": "#c2c8c2",
+                "tertiary-fixed": "#ffdbce",
+                "on-tertiary": "#4d2615",
+                "surface-container-low": "#1c1b1b",
+                "inverse-surface": "#e5e2e1",
+                "on-secondary-container": "#a7b7c8",
+                "tertiary-fixed-dim": "#f8b8a0",
+                "tertiary-container": "#d0957e",
+                "surface-container": "#201f1f",
+                "surface-container-lowest": "#0e0e0e",
+                "surface-container-highest": "#353534",
+                "background": "#131313",
+                "surface-container-high": "#2a2a2a",
+                "outline-variant": "#424844",
+                "surface-tint": "#b2cdbb",
+                "surface-variant": "#353534",
+                "secondary": "#b8c8da",
+                "error": "#ffb4ab",
+                "secondary-container": "#394857",
+                "inverse-on-surface": "#313030",
+                "on-error-container": "#ffdad6",
+                "on-tertiary-fixed": "#331104",
+                "on-primary-fixed-variant": "#344c3e",
+                "on-tertiary-container": "#572e1d",
+                "surface-dim": "#131313",
+                "secondary-fixed": "#d4e4f6",
+                "on-secondary-fixed": "#0d1d2a",
+                "primary": "#b2cdbb",
+                "primary-fixed-dim": "#b2cdbb",
+                "on-surface": "#e5e2e1",
+                "on-primary-fixed": "#082014",
+                "on-secondary-fixed-variant": "#394857",
+                "outline": "#8c928d",
+                "on-primary-container": "#273e31",
+                "surface-bright": "#393939",
+                "primary-fixed": "#cee9d6",
+                "inverse-primary": "#4c6455",
+                "tertiary": "#f8b8a0",
+                "on-error": "#690005",
+                "error-container": "#93000a",
+                "secondary-fixed-dim": "#b8c8da",
+                "on-background": "#e5e2e1",
+                "primary-container": "#8fa998",
+                "on-primary": "#1e3529",
+                "on-secondary": "#223240",
+                "on-tertiary-fixed-variant": "#683b2a",
+                "surface": "#131313"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "stack-md": "1rem",
+                "stack-lg": "2rem",
+                "margin-mobile": "1rem",
+                "margin-desktop": "2.5rem",
+                "container-max": "1280px",
+                "gutter": "1.5rem",
+                "stack-sm": "0.5rem"
+            },
+            "fontFamily": {
+                "body-lg": ["Inter"],
+                "body-md": ["Inter"],
+                "headline-xl": ["Inter"],
+                "headline-lg": ["Inter"],
+                "headline-lg-mobile": ["Inter"],
+                "label-sm": ["JetBrains Mono"],
+                "headline-md": ["Inter"],
+                "code-md": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-xl": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                "headline-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                "headline-lg-mobile": ["30px", {"lineHeight": "38px", "fontWeight": "700"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "code-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: #201f1f;
+            border: 1px solid rgba(140, 146, 141, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(178, 205, 187, 0.3);
+            background: #2a2a2a;
+            transform: translateY(-2px);
+        }
+
+        .syntax-string { color: #f8b8a0; }
+        .syntax-keyword { color: #b2cdbb; }
+        .syntax-function { color: #b8c8da; }
+        .syntax-comment { color: #8c928d; }
+
+        .subtle-pulse {
+            opacity: 0.7;
+            transition: opacity 2s ease-in-out;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #353534;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col pt-20">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto w-full">
+<div class="flex items-center gap-2">
+<span class="font-code-md text-code-md font-bold text-secondary">DEV_ROOT.SYS</span>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md" href="#">Projects</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors duration-200" href="#">Experience</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors duration-200" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-lg hover:bg-surface-variant transition-colors active:scale-95">
+<span class="material-symbols-outlined text-primary" data-icon="terminal">terminal</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="flex-grow max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg w-full">
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 grid-rows-none md:grid-rows-4 gap-6">
+<!-- Hero Tile (Large) -->
+<div class="md:col-span-8 md:row-span-2 glass-card rounded-xl p-8 relative overflow-hidden flex flex-col justify-between group">
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(circle, rgb(178, 205, 187) 1px, transparent 1px); background-size: 24px 24px;"></div>
+<!-- Background Code Snippet -->
+<div class="absolute top-0 right-0 p-6 opacity-5 font-label-sm text-label-sm select-none pointer-events-none group-hover:opacity-10 transition-opacity">
+<pre><code><span class="syntax-keyword">const</span> <span class="syntax-function">initPortfolio</span> = () =&gt; {
+  <span class="syntax-keyword">return</span> {
+    stack: [<span class="syntax-string">'Next.js'</span>, <span class="syntax-string">'TS'</span>],
+    status: <span class="syntax-string">'Available'</span>
+  }
+}</code></pre>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-6">
+<span class="h-2 w-2 rounded-full bg-secondary subtle-pulse"></span>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Available for hire</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl mb-4 max-w-2xl text-on-surface">
+                        Building <span class="text-primary">high-performance</span> web experiences with precision.
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                        I'm a Next.js and TypeScript specialist focused on creating scalable, architecturally sound applications that don't compromise on design.
+                    </p>
+</div>
+<div class="mt-8 flex gap-4">
+<button class="bg-primary px-6 py-3 rounded-lg font-body-md text-on-primary font-bold flex items-center gap-2 hover:brightness-105 transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+                        Get In Touch
+                    </button>
+<button class="border border-secondary/30 px-6 py-3 rounded-lg font-body-md text-secondary font-bold flex items-center gap-2 hover:bg-secondary/5 transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                        Resume
+                    </button>
+</div>
+</div>
+<!-- Tech Stack Tile (Medium) -->
+<div class="md:col-span-4 md:row-span-2 glass-card rounded-xl p-6 flex flex-col">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-headline-md text-headline-md text-on-surface">Tech Arsenal</h3>
+<span class="material-symbols-outlined text-secondary" data-icon="terminal">terminal</span>
+</div>
+<div class="grid grid-cols-2 gap-4 flex-grow"><div class="bg-surface-container-low rounded-lg p-4 flex flex-col items-center justify-center border border-outline-variant/10 hover:border-primary/20 transition-all group/item">
+<div class="w-12 h-12 mb-3 flex items-center justify-center rounded-full bg-surface-container-high relative">
+<span class="material-symbols-outlined text-3xl text-on-surface relative z-10" data-icon="deployed_code">deployed_code</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover/item:text-on-surface transition-colors">Next.js</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 flex flex-col items-center justify-center border border-outline-variant/10 hover:border-secondary/20 transition-all group/item">
+<div class="w-12 h-12 mb-3 flex items-center justify-center rounded-full bg-surface-container-high relative">
+<span class="material-symbols-outlined text-3xl text-secondary relative z-10" data-icon="javascript">javascript</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover/item:text-secondary transition-colors">TypeScript</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 flex flex-col items-center justify-center border border-outline-variant/10 hover:border-primary/20 transition-all group/item">
+<div class="w-12 h-12 mb-3 flex items-center justify-center rounded-full bg-surface-container-high relative">
+<span class="material-symbols-outlined text-3xl text-primary relative z-10" data-icon="layers">layers</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover/item:text-primary transition-colors">React</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 flex flex-col items-center justify-center border border-outline-variant/10 hover:border-tertiary/20 transition-all group/item">
+<div class="w-12 h-12 mb-3 flex items-center justify-center rounded-full bg-surface-container-high relative">
+<span class="material-symbols-outlined text-3xl text-tertiary relative z-10" data-icon="hub">hub</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover/item:text-tertiary transition-colors">Node.js</span>
+</div></div>
+<div class="mt-6 pt-4 border-t border-outline-variant/10">
+<p class="font-label-sm text-label-sm text-on-surface-variant italic">
+                        "Continuously optimizing the stack for performance and developer experience."
+                    </p>
+</div>
+</div>
+<!-- Featured Project Tile (Wide/Large) -->
+<div class="md:col-span-5 md:row-span-2 glass-card rounded-xl overflow-hidden flex flex-col">
+<div class="h-48 w-full relative">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent z-10"></div>
+<img class="w-full h-full object-cover grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-700" data-alt="A sleek web application dashboard with complex data visualizations, glowing neon blue charts, and a clean dark interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAe146QWTZhwlly2USrGeMJ4DEp1EsvFGfl4F-uIT4HYALPcbZ3T1Kc_ND_5l9eqZI0GlNuuN_pXdH2aVrUPg9L-ru-naMP65d1M0vKuN-0aMLX7bcBNisqNVp4Ua4LK_YwOWoowI-C2MmdVJPZIP3sCcQG-IiVeDIbOv2vHqSGRB3Q6Te44fCeLOzTK0ygRlqpVNUSTbCCRfsovJM4TPC7th6rGW-JPZ2LItE4LaYI2tPDXs_mnRIZg"/>
+<div class="absolute top-4 left-4 z-20 flex gap-2">
+<span class="bg-surface-container-highest/90 px-3 py-1 rounded-full font-label-sm text-label-sm text-secondary border border-outline-variant/20">Case Study</span>
+</div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h3 class="font-headline-md text-headline-md mb-2 text-on-surface">Project: NovaFlow</h3>
+<p class="text-on-surface-variant font-body-md text-body-md mb-4 line-clamp-2">
+                        Enterprise-grade CI/CD orchestration platform built with Next.js 14 and tRPC.
+                    </p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 rounded font-label-sm text-label-sm">Next.js 14</span>
+<span class="bg-secondary/10 text-secondary border border-secondary/20 px-2 py-0.5 rounded font-label-sm text-label-sm">PostgreSQL</span>
+<span class="bg-tertiary/10 text-tertiary border border-tertiary/20 px-2 py-0.5 rounded font-label-sm text-label-sm">Tailwind</span>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<a class="text-secondary font-label-sm text-label-sm flex items-center gap-1 hover:underline" href="#">
+                            View Case Study <span class="material-symbols-outlined text-sm" data-icon="north_east">north_east</span>
+</a>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="open_in_new">open_in_new</span>
+</div>
+</div>
+</div>
+<!-- GitHub Stats Tile (Square-ish) -->
+<div class="md:col-span-4 md:row-span-2 glass-card rounded-xl p-6 flex flex-col">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-on-surface" data-icon="star">star</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Contribution Stream</h3>
+</div>
+<div class="flex-grow flex flex-col justify-center">
+<!-- Mock Contribution Graph -->
+<div class="grid grid-cols-7 gap-1.5 self-center"><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary opacity-90 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-surface-container-highest transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/50 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/20 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-surface-container-highest transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/70 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary opacity-80 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/20 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-surface-container-highest transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/40 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/60 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/20 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-surface-container-highest transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/40 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/20 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-surface-container-highest transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/60 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/40 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/20 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-surface-container-highest transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/40 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/60 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/20 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-surface-container-highest transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/40 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/60 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/20 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-surface-container-highest transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/40 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/60 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/20 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-surface-container-highest transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/40 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/60 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/20 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-surface-container-highest transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/40 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/60 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/20 transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-surface-container-highest transition-all hover:scale-110 cursor-pointer"></div><div class="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-primary/40 transition-all hover:scale-110 cursor-pointer"></div></div>
+</div>
+<div class="mt-6 flex justify-between items-end">
+<div>
+<div class="text-on-surface-variant font-label-sm text-label-sm">Total PRs</div>
+<div class="text-2xl font-bold font-headline-md text-primary">2.4k+</div>
+</div>
+<div class="text-right">
+<div class="text-on-surface-variant font-label-sm text-label-sm">Active Streak</div>
+<div class="text-2xl font-bold font-headline-md text-secondary">42 Days</div>
+</div>
+</div>
+</div>
+<!-- Social/Blog/Other Tiles -->
+<div class="md:col-span-3 md:row-span-1 glass-card rounded-xl p-6 flex flex-col justify-between group cursor-pointer overflow-hidden relative">
+<div class="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-9xl" data-icon="rss_feed">rss_feed</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-3">
+<span class="px-2 py-0.5 rounded bg-tertiary/10 text-tertiary font-label-sm text-label-sm border border-tertiary/20">Article</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">5 min read</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2 group-hover:text-tertiary transition-colors text-on-surface">The Future of RSCs</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+Exploring the architectural shifts in React Server Components and what it means for the next generation of web apps.
+</p>
+</div>
+<div class="flex items-center gap-2 text-tertiary font-label-sm text-label-sm mt-4 group-hover:translate-x-1 transition-transform">
+<span class="">Read Full Article</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div></div>
+<div class="md:col-span-3 md:row-span-1 glass-card rounded-xl p-6 flex items-center justify-around">
+<a class="p-3 rounded-full bg-surface-container-high border border-outline-variant/10 text-on-surface-variant hover:text-primary transition-all hover:scale-105 active:scale-95" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="link">link</span>
+</a>
+<a class="p-3 rounded-full bg-surface-container-high border border-outline-variant/10 text-on-surface-variant hover:text-secondary transition-all hover:scale-105 active:scale-95" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="share">share</span>
+</a>
+<a class="p-3 rounded-full bg-surface-container-high border border-outline-variant/10 text-on-surface-variant hover:text-tertiary transition-all hover:scale-105 active:scale-95" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="alternate_email">alternate_email</span>
+</a>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-lg border-t border-outline-variant/20 bg-surface-container-lowest flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-stack-md">
+<div class="font-code-md text-code-md text-secondary">© 2024 DEV_ROOT.SYS</div>
+<div class="flex gap-8">
+<a class="font-code-md text-code-md text-on-surface-variant hover:text-tertiary hover:translate-x-1 transition-all cursor-pointer" href="#">GitHub</a>
+<a class="font-code-md text-code-md text-on-surface-variant hover:text-tertiary hover:translate-x-1 transition-all cursor-pointer" href="#">LinkedIn</a>
+<a class="font-code-md text-code-md text-on-surface-variant hover:text-tertiary hover:translate-x-1 transition-all cursor-pointer" href="#">Twitter</a>
+<a class="font-code-md text-code-md text-on-surface-variant hover:text-tertiary hover:translate-x-1 transition-all cursor-pointer" href="#">Email</a>
+</div>
+<div class="text-tertiary font-code-md text-code-md flex items-center gap-2">
+<span class="h-1.5 w-1.5 rounded-full bg-tertiary subtle-pulse"></span>
+            System Status: Nominal
+        </div>
+</footer>
+</body></html>

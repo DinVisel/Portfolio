@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Colors (Material Design 3, dark) ---- */
+  --color-on-surface-variant: #c2c8c2;
+  --color-tertiary-fixed: #ffdbce;
+  --color-on-tertiary: #4d2615;
+  --color-surface-container-low: #1c1b1b;
+  --color-inverse-surface: #e5e2e1;
+  --color-on-secondary-container: #a7b7c8;
+  --color-tertiary-fixed-dim: #f8b8a0;
+  --color-tertiary-container: #d0957e;
+  --color-surface-container: #201f1f;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-surface-container-highest: #353534;
+  --color-background: #131313;
+  --color-surface-container-high: #2a2a2a;
+  --color-outline-variant: #424844;
+  --color-surface-tint: #b2cdbb;
+  --color-surface-variant: #353534;
+  --color-secondary: #b8c8da;
+  --color-error: #ffb4ab;
+  --color-secondary-container: #394857;
+  --color-inverse-on-surface: #313030;
+  --color-on-error-container: #ffdad6;
+  --color-on-tertiary-fixed: #331104;
+  --color-on-primary-fixed-variant: #344c3e;
+  --color-on-tertiary-container: #572e1d;
+  --color-surface-dim: #131313;
+  --color-secondary-fixed: #d4e4f6;
+  --color-on-secondary-fixed: #0d1d2a;
+  --color-primary: #b2cdbb;
+  --color-primary-fixed-dim: #b2cdbb;
+  --color-on-surface: #e5e2e1;
+  --color-on-primary-fixed: #082014;
+  --color-on-secondary-fixed-variant: #394857;
+  --color-outline: #8c928d;
+  --color-on-primary-container: #273e31;
+  --color-surface-bright: #393939;
+  --color-primary-fixed: #cee9d6;
+  --color-inverse-primary: #4c6455;
+  --color-tertiary: #f8b8a0;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-secondary-fixed-dim: #b8c8da;
+  --color-on-background: #e5e2e1;
+  --color-primary-container: #8fa998;
+  --color-on-primary: #1e3529;
+  --color-on-secondary: #223240;
+  --color-on-tertiary-fixed-variant: #683b2a;
+  --color-surface: #131313;
+
+  /* ---- Font families ---- */
+  --font-body-lg: var(--font-inter);
+  --font-body-md: var(--font-inter);
+  --font-headline-xl: var(--font-inter);
+  --font-headline-lg: var(--font-inter);
+  --font-headline-lg-mobile: var(--font-inter);
+  --font-headline-md: var(--font-inter);
+  --font-label-sm: var(--font-jetbrains);
+  --font-code-md: var(--font-jetbrains);
+
+  /* ---- Font sizes ---- */
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 28px;
+  --text-body-lg--font-weight: 400;
+  --text-body-md: 16px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
+  --text-headline-xl: 60px;
+  --text-headline-xl--line-height: 72px;
+  --text-headline-xl--letter-spacing: -0.02em;
+  --text-headline-xl--font-weight: 800;
+  --text-headline-lg: 36px;
+  --text-headline-lg--line-height: 44px;
+  --text-headline-lg--letter-spacing: -0.01em;
+  --text-headline-lg--font-weight: 700;
+  --text-headline-lg-mobile: 30px;
+  --text-headline-lg-mobile--line-height: 38px;
+  --text-headline-lg-mobile--font-weight: 700;
+  --text-label-sm: 12px;
+  --text-label-sm--line-height: 16px;
+  --text-label-sm--font-weight: 500;
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 32px;
+  --text-headline-md--font-weight: 600;
+  --text-code-md: 14px;
+  --text-code-md--line-height: 20px;
+  --text-code-md--font-weight: 400;
+
+  /* ---- Spacing ---- */
+  --spacing-stack-sm: 0.5rem;
+  --spacing-stack-md: 1rem;
+  --spacing-stack-lg: 2rem;
+  --spacing-margin-mobile: 1rem;
+  --spacing-margin-desktop: 2.5rem;
+  --spacing-gutter: 1.5rem;
+
+}
+
+body {
+  background-color: #131313;
+  color: #e5e2e1;
+  overflow-x: hidden;
+}
+
+.glass-card {
+  background: #201f1f;
+  border: 1px solid rgba(140, 146, 141, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(178, 205, 187, 0.3);
+  background: #2a2a2a;
+  transform: translateY(-2px);
+}
+
+.syntax-string {
+  color: #f8b8a0;
+}
+.syntax-keyword {
+  color: #b2cdbb;
+}
+.syntax-function {
+  color: #b8c8da;
+}
+.syntax-comment {
+  color: #8c928d;
+}
+
+.subtle-pulse {
+  opacity: 0.7;
+  transition: opacity 2s ease-in-out;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #353534;
+  border-radius: 10px;
+}
