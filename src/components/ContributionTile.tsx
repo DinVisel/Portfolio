@@ -1,4 +1,5 @@
 import Icon from "./Icon";
+import { contributions } from "@/content/portfolio";
 
 // Deterministic intensity pattern (49 cells) so server/client markup matches.
 // Each value indexes into LEVELS — all static classes so Tailwind keeps them.
@@ -42,7 +43,7 @@ export default function ContributionTile() {
             Total PRs
           </div>
           <div className="text-2xl font-bold font-headline-md text-primary">
-            2.4k+
+            {contributions.totalPRs}
           </div>
         </div>
         <div className="text-right">
@@ -50,7 +51,7 @@ export default function ContributionTile() {
             Active Streak
           </div>
           <div className="text-2xl font-bold font-headline-md text-secondary">
-            42 Days
+            {contributions.activeStreak}
           </div>
         </div>
       </div>

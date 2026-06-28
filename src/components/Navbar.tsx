@@ -1,4 +1,6 @@
+import Link from "next/link";
 import Icon from "./Icon";
+import { navLinks, profile } from "@/content/portfolio";
 
 export default function Navbar() {
   return (
@@ -6,28 +8,19 @@ export default function Navbar() {
       <div className="flex justify-between items-center px-margin-desktop py-4 max-w-[1280px] mx-auto w-full">
         <div className="flex items-center gap-2">
           <span className="font-code-md text-code-md font-bold text-secondary">
-            DEV_ROOT.SYS
+            {profile.brand}
           </span>
         </div>
         <div className="hidden md:flex gap-8 items-center">
-          <a
-            className="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md"
-            href="#"
-          >
-            Projects
-          </a>
-          <a
-            className="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors duration-200"
-            href="#"
-          >
-            Experience
-          </a>
-          <a
-            className="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors duration-200"
-            href="#"
-          >
-            Contact
-          </a>
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              className="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors duration-200"
+              href={link.href}
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
         <div className="flex items-center gap-4">
           <button className="p-2 rounded-lg hover:bg-surface-variant transition-colors active:scale-95">

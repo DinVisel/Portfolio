@@ -1,4 +1,5 @@
 import Icon from "./Icon";
+import { profile } from "@/content/portfolio";
 
 export default function HeroTile() {
   return (
@@ -35,28 +36,33 @@ export default function HeroTile() {
         <div className="flex items-center gap-2 mb-6">
           <span className="h-2 w-2 rounded-full bg-secondary subtle-pulse"></span>
           <span className="font-label-sm text-label-sm text-secondary uppercase tracking-widest">
-            Available for hire
+            {profile.availability}
           </span>
         </div>
         <h1 className="font-headline-xl text-headline-xl mb-4 max-w-2xl text-on-surface">
-          Building <span className="text-primary">high-performance</span> web
-          experiences with precision.
+          {profile.headline.before}
+          <span className="text-primary">{profile.headline.highlight}</span>
+          {profile.headline.after}
         </h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
-          I&apos;m a Next.js and TypeScript specialist focused on creating
-          scalable, architecturally sound applications that don&apos;t compromise
-          on design.
+          {profile.bio}
         </p>
       </div>
       <div className="mt-8 flex gap-4">
-        <button className="bg-primary px-6 py-3 rounded-lg font-body-md text-on-primary font-bold flex items-center gap-2 hover:brightness-105 transition-all active:scale-95">
+        <a
+          href={`mailto:${profile.email}`}
+          className="bg-primary px-6 py-3 rounded-lg font-body-md text-on-primary font-bold flex items-center gap-2 hover:brightness-105 transition-all active:scale-95"
+        >
           <Icon name="mail" />
           Get In Touch
-        </button>
-        <button className="border border-secondary/30 px-6 py-3 rounded-lg font-body-md text-secondary font-bold flex items-center gap-2 hover:bg-secondary/5 transition-all active:scale-95">
+        </a>
+        <a
+          href={profile.resumeUrl}
+          className="border border-secondary/30 px-6 py-3 rounded-lg font-body-md text-secondary font-bold flex items-center gap-2 hover:bg-secondary/5 transition-all active:scale-95"
+        >
           <Icon name="download" />
           Resume
-        </button>
+        </a>
       </div>
     </div>
   );

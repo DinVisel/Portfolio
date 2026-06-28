@@ -1,19 +1,19 @@
-const links = ["GitHub", "LinkedIn", "Twitter", "Email"];
+import { footerLinks, profile } from "@/content/portfolio";
 
 export default function Footer() {
   return (
     <footer className="w-full py-stack-lg border-t border-outline-variant/20 bg-surface-container-lowest flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-stack-md">
       <div className="font-code-md text-code-md text-secondary">
-        © 2024 DEV_ROOT.SYS
+        © {new Date().getFullYear()} {profile.brand}
       </div>
       <div className="flex gap-8">
-        {links.map((link) => (
+        {footerLinks.map((link) => (
           <a
-            key={link}
+            key={link.label}
             className="font-code-md text-code-md text-on-surface-variant hover:text-tertiary hover:translate-x-1 transition-all cursor-pointer"
-            href="#"
+            href={link.href}
           >
-            {link}
+            {link.label}
           </a>
         ))}
       </div>
