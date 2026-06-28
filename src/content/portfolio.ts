@@ -97,7 +97,7 @@ export const profile = {
 	bio: "I'm a Next.js and TypeScript specialist focused on creating scalable, architecturally sound applications that don't compromise on design.",
 	email: "arda3105ozcan@gmail.com",
 	// TODO: set your GitHub username to power the live contribution graph.
-	githubUsername: "",
+	githubUsername: "DinVisel",
 	resumeUrl: "#",
 	arsenalQuote:
 		"Continuously optimizing the stack for performance and developer experience.",
@@ -266,10 +266,13 @@ export const socialTileLinks: SocialLink[] = [
 ];
 
 export const footerLinks: NavLink[] = [
-	{ label: "GitHub", href: "#" },
-	{ label: "LinkedIn", href: "#" },
+	{ label: "GitHub", href: "https://github.com/DinVisel" },
+	{
+		label: "LinkedIn",
+		href: "https://www.linkedin.com/in/arda-özcan-707671327",
+	},
 	{ label: "Twitter", href: "#" },
-	{ label: "Email", href: "#" },
+	{ label: "Email", href: "arda3105ozcan@gmail.com" },
 ];
 
 export const experiences: Experience[] = [
@@ -278,7 +281,7 @@ export const experiences: Experience[] = [
 		organization: "Pharmacology Thesis Project",
 		type: "Freelance · Contract",
 		// TODO: set the real year/month range
-		period: "2025",
+		period: "01/2026 - 03/2026",
 		summary:
 			"Modernized a legacy desktop research application and migrated its data layer to a modern, reliable PostgreSQL stack to support an academic pharmacology thesis.",
 		highlights: [
@@ -301,7 +304,7 @@ export const contactChannels: ContactChannel[] = [
 	{
 		label: "GitHub",
 		value: "@username",
-		href: "#",
+		href: "https://github.com/DinVisel",
 		icon: "code",
 		accent: "secondary",
 	},
