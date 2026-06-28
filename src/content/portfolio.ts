@@ -109,9 +109,11 @@ export const navLinks: NavLink[] = [
 
 export const techStack: Tech[] = [
   { name: "Next.js", icon: "deployed_code", accent: "on-surface" },
-  { name: "TypeScript", icon: "javascript", accent: "secondary" },
+  { name: "TypeScript", icon: "code", accent: "secondary" },
+  { name: "NestJS", icon: "dns", accent: "primary" },
+  { name: "PostgreSQL", icon: "database", accent: "tertiary" },
   { name: "React", icon: "layers", accent: "primary" },
-  { name: "Node.js", icon: "hub", accent: "tertiary" },
+  { name: "Swift", icon: "smartphone", accent: "secondary" },
 ];
 
 export const projects: Project[] = [
