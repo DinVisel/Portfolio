@@ -1,58 +1,93 @@
 import Icon from "./Icon";
-import { contributions } from "@/content/portfolio";
+import { profile } from "@/content/portfolio";
+import { getContributions } from "@/lib/github";
 
-// Deterministic intensity pattern (49 cells) so server/client markup matches.
-// Each value indexes into LEVELS — all static classes so Tailwind keeps them.
+// Maps the API's 0–4 intensity levels to static Tailwind classes.
 const LEVELS = [
   "bg-surface-container-highest",
-  "bg-primary/20",
-  "bg-primary/40",
+  "bg-primary/30",
   "bg-primary/50",
-  "bg-primary/60",
   "bg-primary/70",
   "bg-primary",
 ];
 
-const PATTERN = [
-  6, 0, 3, 1, 0, 5, 6, 1, 0, 2, 6, 4, 1, 0, 2, 6, 1, 0, 4, 2, 6, 1, 0, 2, 4,
-  6, 1, 0, 2, 6, 4, 1, 0, 2, 6, 4, 1, 0, 2, 6, 4, 6, 4, 1, 0, 2, 6, 4, 1,
-];
+export default async function ContributionTile() {
+  const data = await getContributions(profile.githubUsername);
 
-export default function ContributionTile() {
+  // Pad the start so the first column begins on the correct weekday (0 = Sun),
+  // giving the authentic GitHub layout of 7 day-rows × week-columns.
+  const lead = data?.days.length
+    ? new Date(data.days[0].date + "T00:00:00Z").getUTCDay()
+    : 0;
+  const cells: (number | null)[] = data
+    ? [...Array(lead).fill(null), ...data.days.map((d) => d.level)]
+    : [];
+
+  const total = data?.total ?? 0;
+
   return (
     <div className="md:col-span-4 md:row-span-2 glass-card rounded-xl p-6 flex flex-col">
       <div className="flex items-center gap-2 mb-6">
-        <Icon name="star" className="text-on-surface" />
+        <Icon name="calendar_month" className="text-on-surface" />
         <h3 className="font-headline-md text-headline-md text-on-surface">
           Contribution Stream
         </h3>
       </div>
+
       <div className="flex-grow flex flex-col justify-center">
-        <div className="grid grid-cols-7 gap-1.5 self-center">
-          {PATTERN.map((level, i) => (
-            <div
-              key={i}
-              className={`w-3 h-3 md:w-4 md:h-4 rounded-sm ${LEVELS[level]} transition-all hover:scale-110 cursor-pointer`}
-            ></div>
-          ))}
-        </div>
+        {data ? (
+          <div className="overflow-x-auto custom-scrollbar pb-2">
+            <div className="grid grid-rows-7 grid-flow-col gap-1 w-max">
+              {cells.map((level, i) =>
+                level === null ? (
+                  <div key={i} className="w-2.5 h-2.5 rounded-[2px]"></div>
+                ) : (
+                  <div
+                    key={i}
+                    className={`w-2.5 h-2.5 rounded-[2px] ${LEVELS[level]} transition-all hover:scale-125 cursor-pointer`}
+                  ></div>
+                ),
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="text-center py-6">
+            <Icon
+              name="hub"
+              className="text-4xl text-on-surface-variant/40 mb-2"
+            />
+            <p className="font-label-sm text-label-sm text-on-surface-variant">
+              {profile.githubUsername
+                ? "Couldn't load contributions right now."
+                : "Set a GitHub username to show live contributions."}
+            </p>
+          </div>
+        )}
       </div>
-      <div className="mt-6 flex justify-between items-end">
+
+      <div className="mt-6 pt-4 border-t border-outline-variant/10 flex items-center justify-between">
         <div>
-          <div className="text-on-surface-variant font-label-sm text-label-sm">
-            Total PRs
-          </div>
-          <div className="text-2xl font-bold font-headline-md text-primary">
-            {contributions.totalPRs}
-          </div>
+          {data && (
+            <>
+              <span className="text-2xl font-bold font-headline-md text-primary">
+                {total.toLocaleString()}
+              </span>{" "}
+              <span className="font-label-sm text-label-sm text-on-surface-variant">
+                contributions in the last year
+              </span>
+            </>
+          )}
         </div>
-        <div className="text-right">
-          <div className="text-on-surface-variant font-label-sm text-label-sm">
-            Active Streak
-          </div>
-          <div className="text-2xl font-bold font-headline-md text-secondary">
-            {contributions.activeStreak}
-          </div>
+        <div className="flex items-center gap-1.5">
+          <span className="font-label-sm text-label-sm text-on-surface-variant">
+            Less
+          </span>
+          {LEVELS.map((cls) => (
+            <span key={cls} className={`w-2.5 h-2.5 rounded-[2px] ${cls}`}></span>
+          ))}
+          <span className="font-label-sm text-label-sm text-on-surface-variant">
+            More
+          </span>
         </div>
       </div>
     </div>
