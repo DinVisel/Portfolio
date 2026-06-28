@@ -67,6 +67,24 @@ export type Article = {
   url: string;
 };
 
+export type Experience = {
+  role: string;
+  organization: string;
+  type: string;
+  period: string;
+  summary: string;
+  highlights: string[];
+  stack: string[];
+};
+
+export type ContactChannel = {
+  label: string;
+  value: string;
+  href: string;
+  icon: string;
+  accent: Accent;
+};
+
 export const profile = {
   brand: "DEV_ROOT.SYS",
   name: "Arda Özcan",
@@ -85,8 +103,8 @@ export const profile = {
 
 export const navLinks: NavLink[] = [
   { label: "Projects", href: "/projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "Experience", href: "/experience" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const techStack: Tech[] = [
@@ -249,3 +267,51 @@ export const footerLinks: NavLink[] = [
   { label: "Twitter", href: "#" },
   { label: "Email", href: "#" },
 ];
+
+export const experiences: Experience[] = [
+  {
+    role: "Freelance Full-Stack Developer",
+    organization: "Pharmacology Thesis Project",
+    type: "Freelance · Contract",
+    // TODO: set the real year/month range
+    period: "2025",
+    summary:
+      "Modernized a legacy desktop research application and migrated its data layer to a modern, reliable PostgreSQL stack to support an academic pharmacology thesis.",
+    highlights: [
+      "Migrated a production database of ~3 million rows from Microsoft SQL Server to PostgreSQL with full data integrity and zero data loss.",
+      "Rebuilt and extended the UI of a legacy Delphi application nearly 30 years old, modernizing its workflows for the researcher's needs.",
+      "Reconciled and validated complex relational data during the migration to keep the application fully functional on the new database.",
+    ],
+    stack: ["PostgreSQL", "Microsoft SQL Server", "Delphi", "Data Migration"],
+  },
+];
+
+export const contactChannels: ContactChannel[] = [
+  {
+    label: "Email",
+    value: profile.email,
+    href: `mailto:${profile.email}`,
+    icon: "mail",
+    accent: "primary",
+  },
+  {
+    label: "GitHub",
+    value: "@username",
+    href: "#",
+    icon: "code",
+    accent: "secondary",
+  },
+  {
+    label: "LinkedIn",
+    value: "in/username",
+    href: "#",
+    icon: "person",
+    accent: "tertiary",
+  },
+];
+
+export const contact = {
+  heading: "Let's build something.",
+  intro:
+    "I'm currently open to freelance work and new opportunities. Have a project in mind or just want to talk shop? Reach out through any of the channels below.",
+};
