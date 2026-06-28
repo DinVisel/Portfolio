@@ -28,16 +28,35 @@ export type Tag = {
   accent: Accent;
 };
 
+export type StackItem = {
+  label: string;
+  value: string;
+};
+
+export type Feature = {
+  title: string;
+  description: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
+  /** Short label shown on the image badge, e.g. "Live in Production". */
   badge: string;
+  /** One-liner used on cards and the featured tile. */
   summary: string;
+  /** Longer description for the project detail page. */
+  overview: string;
+  /** Key technology chips shown on cards (keep to ~3–5). */
   tags: Tag[];
-  image: string;
+  /** Full categorized stack for the detail page. */
+  stack: StackItem[];
+  features: Feature[];
+  /** Optional cover image; a gradient placeholder is shown when omitted. */
+  image?: string;
   imageAlt: string;
-  caseStudyUrl?: string;
   liveUrl?: string;
+  repoUrl?: string;
 };
 
 export type Article = {
@@ -79,21 +98,127 @@ export const techStack: Tech[] = [
 
 export const projects: Project[] = [
   {
-    slug: "novaflow",
-    title: "Project: NovaFlow",
-    badge: "Case Study",
+    slug: "aptly",
+    title: "Aptly",
+    badge: "Live in Production",
     summary:
-      "Enterprise-grade CI/CD orchestration platform built with Next.js 14 and tRPC.",
+      "Full-stack scheduling SaaS that digitizes booking for small businesses and independent professionals.",
+    overview:
+      "Aptly is a live, full-stack scheduling SaaS platform built to help small businesses and independent professionals digitize their operations. The platform eliminates manual scheduling hassles by providing automated calendar management, streamlined client booking workflows, and an intuitive administrative interface designed to optimize daily appointment streams.",
     tags: [
-      { label: "Next.js 14", accent: "primary" },
+      { label: "Next.js", accent: "on-surface" },
+      { label: "NestJS", accent: "primary" },
       { label: "PostgreSQL", accent: "secondary" },
-      { label: "Tailwind", accent: "tertiary" },
+      { label: "TypeScript", accent: "tertiary" },
+      { label: "GSAP", accent: "primary" },
     ],
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBAe146QWTZhwlly2USrGeMJ4DEp1EsvFGfl4F-uIT4HYALPcbZ3T1Kc_ND_5l9eqZI0GlNuuN_pXdH2aVrUPg9L-ru-naMP65d1M0vKuN-0aMLX7bcBNisqNVp4Ua4LK_YwOWoowI-C2MmdVJPZIP3sCcQG-IiVeDIbOv2vHqSGRB3Q6Te44fCeLOzTK0ygRlqpVNUSTbCCRfsovJM4TPC7th6rGW-JPZ2LItE4LaYI2tPDXs_mnRIZg",
-    imageAlt:
-      "A sleek web application dashboard with complex data visualizations, glowing neon blue charts, and a clean dark interface.",
-    caseStudyUrl: "#",
+    stack: [
+      { label: "Frontend", value: "Next.js, Tailwind CSS" },
+      { label: "Backend", value: "Node.js (NestJS)" },
+      { label: "Database", value: "PostgreSQL" },
+      { label: "Language", value: "TypeScript" },
+      { label: "Animations", value: "GSAP (GreenSock)" },
+      { label: "DevOps", value: "Hetzner · automated CI/CD" },
+    ],
+    features: [
+      {
+        title: "Interactive Calendar & Booking Engine",
+        description:
+          "A seamless, high-performance calendar interface for both businesses and clients to manage slots effortlessly.",
+      },
+      {
+        title: "Premium UX/UI",
+        description:
+          "A sleek modern layout enhanced by premium, hardware-accelerated visual transitions.",
+      },
+      {
+        title: "Business Digitalization Toolkit",
+        description:
+          "Built-in tools tailored for solo practitioners and small teams to handle client data, tracking, and scheduling retention.",
+      },
+    ],
+    imageAlt: "Aptly scheduling SaaS dashboard.",
+    liveUrl: "#",
+  },
+  {
+    slug: "optikdata",
+    title: "OptikData",
+    badge: "Live in Production",
+    summary:
+      "Production-grade B2B CRM purpose-built for optical stores — prescriptions, payments, and order pipelines in one place.",
+    overview:
+      "OptikData is a live, production-grade B2B CRM application custom-built to streamline operations for optical stores. Moving away from generic retail tools, this platform centralizes complex optical customer records, manages glass and frame vision prescriptions, integrates secure merchant payment gateways, and optimizes order pipelines for fast-paced retail environments.",
+    tags: [
+      { label: "React (Vite)", accent: "on-surface" },
+      { label: "NestJS", accent: "primary" },
+      { label: "PostgreSQL", accent: "secondary" },
+      { label: "TypeScript", accent: "tertiary" },
+    ],
+    stack: [
+      { label: "Frontend", value: "Vite (React)" },
+      { label: "Backend", value: "Node.js (NestJS)" },
+      { label: "Database", value: "PostgreSQL" },
+      { label: "Language", value: "JavaScript / TypeScript" },
+      { label: "DevOps", value: "Automated CI/CD · zero-downtime" },
+    ],
+    features: [
+      {
+        title: "Vision Prescription Logging",
+        description:
+          "Secure, detailed profiles that track precise glass dimensions, focal measurements, and customer purchasing history.",
+      },
+      {
+        title: "Integrated Payment Gateways",
+        description:
+          "Automated financial management integrated directly with secure enterprise payment processors.",
+      },
+      {
+        title: "Workflow Automation",
+        description:
+          "Tailored administrative dashboards that minimize manual retail paperwork for opticians.",
+      },
+    ],
+    imageAlt: "OptikData optometry B2B CRM interface.",
+    liveUrl: "#",
+  },
+  {
+    slug: "takipnet",
+    title: "TakipNet",
+    badge: "Live on the App Store",
+    summary:
+      "AI-powered native iOS app that tracks exam performance and pinpoints students' conceptual gaps.",
+    overview:
+      "TakipNet (NetTracker) is an AI-integrated native mobile application live on the App Store, built to revolutionize how students prepare for standardized examinations. Acting as an intelligent study companion, the app enables rigorous score tracking, deep question logging, and diagnostic feedback to maximize study efficiency.",
+    tags: [
+      { label: "Swift", accent: "tertiary" },
+      { label: "iOS", accent: "on-surface" },
+      { label: "MVVM", accent: "primary" },
+      { label: "Firebase", accent: "secondary" },
+    ],
+    stack: [
+      { label: "Mobile", value: "Native iOS (Swift)" },
+      { label: "Architecture", value: "MVVM" },
+      { label: "Backend & Auth", value: "Firebase" },
+      { label: "DevOps", value: "App Store Connect · TestFlight" },
+    ],
+    features: [
+      {
+        title: "AI-Driven Performance Analytics",
+        description:
+          "Advanced algorithms automatically parse incorrect answers to pinpoint exact conceptual gaps and topic weaknesses.",
+      },
+      {
+        title: "Advanced Progress Dashboard",
+        description:
+          "Organized data charts tracking individual performance, net scores, and preparation trajectory over time.",
+      },
+      {
+        title: "Targeted Revision Insights",
+        description:
+          "Automated, data-driven guidance that helps students turn their weak points into strengths before exam day.",
+      },
+    ],
+    imageAlt: "TakipNet exam performance tracking mobile app.",
     liveUrl: "#",
   },
 ];
