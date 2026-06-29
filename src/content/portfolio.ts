@@ -98,7 +98,7 @@ export const profile = {
 	email: "arda3105ozcan@gmail.com",
 	// TODO: set your GitHub username to power the live contribution graph.
 	githubUsername: "DinVisel",
-	resumeUrl: "#",
+	resumeUrl: "https://github.com/DinVisel",
 	arsenalQuote:
 		"Continuously optimizing the stack for performance and developer experience.",
 };
@@ -262,7 +262,12 @@ export const featuredArticle: Article = {
 export const socialTileLinks: SocialLink[] = [
 	{ label: "Website", href: "#", icon: "link", accent: "primary" },
 	{ label: "Share", href: "#", icon: "share", accent: "secondary" },
-	{ label: "Email", href: "#", icon: "alternate_email", accent: "tertiary" },
+	{
+		label: "Email",
+		href: "mailto:arda3105ozcan@gmail.com",
+		icon: "alternate_email",
+		accent: "tertiary",
+	},
 ];
 
 export const footerLinks: NavLink[] = [
@@ -272,7 +277,7 @@ export const footerLinks: NavLink[] = [
 		href: "https://www.linkedin.com/in/arda-özcan-707671327",
 	},
 	{ label: "Twitter", href: "#" },
-	{ label: "Email", href: "arda3105ozcan@gmail.com" },
+	{ label: "Email", href: "mailto:arda3105ozcan@gmail.com" },
 ];
 
 export const experiences: Experience[] = [
