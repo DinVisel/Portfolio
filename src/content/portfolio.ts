@@ -122,6 +122,8 @@ export const techStack: Tech[] = [
 	{ name: "Next.js", icon: "deployed_code", accent: "on-surface" },
 	{ name: "TypeScript", icon: "code", accent: "secondary" },
 	{ name: "NestJS", icon: "dns", accent: "primary" },
+	{ name: ".NET", icon: "memory", accent: "tertiary" },
+	{ name: "Go", icon: "bolt", accent: "secondary" },
 	{ name: "PostgreSQL", icon: "database", accent: "tertiary" },
 	{ name: "React", icon: "layers", accent: "primary" },
 	{ name: "Swift", icon: "smartphone", accent: "secondary" },
@@ -170,6 +172,50 @@ export const projects: Project[] = [
 		],
 		imageAlt: "Aptly scheduling SaaS dashboard.",
 		liveUrl: "https://aptly.com.tr",
+	},
+	{
+		slug: "cov0",
+		title: "Cov0",
+		badge: "Live in Production",
+		summary:
+			"Next-gen football analysis, game-design, and storage platform with a dedicated video-processing pipeline.",
+		overview:
+			"Cov0 is a live, continuously evolving platform for football teams, coaches, scouts, and players to analyze player performance, design game plans, and store match footage and historical data. It pairs a Next.js frontend with a .NET backend and a dedicated Go service for heavy video processing, backed by object storage, caching, and message-queue infrastructure to keep ingestion and analysis fast and reliable at scale.",
+		tags: [
+			{ label: "Next.js", accent: "on-surface" },
+			{ label: ".NET", accent: "primary" },
+			{ label: "Go", accent: "secondary" },
+			{ label: "Redis", accent: "tertiary" },
+			{ label: "RabbitMQ", accent: "primary" },
+		],
+		stack: [
+			{ label: "Frontend", value: "Next.js, TypeScript" },
+			{ label: "Backend", value: ".NET" },
+			{ label: "Video Processing", value: "Go" },
+			{ label: "Storage", value: "Cloudflare R2" },
+			{ label: "Cache & Queue", value: "Redis · RabbitMQ" },
+			{ label: "Delivery", value: "Cloudflare CDN" },
+			{ label: "DevOps", value: "Automated CI/CD pipeline" },
+		],
+		features: [
+			{
+				title: "Dedicated Video Processing Pipeline",
+				description:
+					"A standalone Go service handles heavy match-footage processing, decoupled from the API via a RabbitMQ message queue for resilient, parallel ingestion.",
+			},
+			{
+				title: "Performance & Game Analysis",
+				description:
+					"Tools for teams, coaches, and scouts to break down player performance, track match statistics, and design game plans from stored footage and data.",
+			},
+			{
+				title: "Edge-Delivered Media at Scale",
+				description:
+					"Footage and assets are stored in Cloudflare R2 and served through Cloudflare's CDN, with Redis caching hot data for low-latency access.",
+			},
+		],
+		imageAlt: "Cov0 football analysis platform interface.",
+		liveUrl: "https://cov0.com",
 	},
 	{
 		slug: "optikdata",
@@ -254,19 +300,20 @@ export const projects: Project[] = [
 	},
 ];
 
-// TODO: replace with the project you're actively building right now.
 export const currentProject: CurrentProject = {
-	status: "In Development",
-	name: "New Project",
+	status: "Live · Active Development",
+	name: "Cov0 — Football Analysis Platform",
 	summary:
-		"Actively building my next product — a short one-liner about what it does goes here.",
-	progress: 60,
+		"A next-gen football analysis, game-design, and storage platform for teams, coaches, scouts, and players. Polyglot stack with a dedicated Go video processor, shipping continuous updates behind a CI/CD pipeline.",
+	progress: 75,
 	tags: [
 		{ label: "Next.js", accent: "on-surface" },
-		{ label: "TypeScript", accent: "secondary" },
-		{ label: "PostgreSQL", accent: "tertiary" },
+		{ label: ".NET", accent: "primary" },
+		{ label: "Go", accent: "secondary" },
+		{ label: "Redis", accent: "tertiary" },
+		{ label: "RabbitMQ", accent: "primary" },
 	],
-	url: "#",
+	url: "https://cov0.com",
 };
 
 // TODO: fill in your real education (institution, degree, dates).
@@ -307,7 +354,6 @@ export const experiences: Experience[] = [
 		role: "Freelance Full-Stack Developer",
 		organization: "Pharmacology Thesis Project",
 		type: "Freelance · Contract",
-		// TODO: set the real year/month range
 		period: "01/2026 - 03/2026",
 		summary:
 			"Modernized a legacy desktop research application and migrated its data layer to a modern, reliable PostgreSQL stack to support an academic pharmacology thesis.",
