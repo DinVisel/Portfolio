@@ -1,8 +1,8 @@
 import HeroTile from "./HeroTile";
 import TechStackTile from "./TechStackTile";
 import FeaturedProjectTile from "./FeaturedProjectTile";
-import ContributionTile from "./ContributionTile";
-import ArticleTile from "./ArticleTile";
+import CurrentProjectTile from "./CurrentProjectTile";
+import EducationTile from "./EducationTile";
 import SocialTile from "./SocialTile";
 
 export default function BentoGrid() {
@@ -11,8 +11,8 @@ export default function BentoGrid() {
       <HeroTile />
       <TechStackTile />
       <FeaturedProjectTile />
-      <ContributionTile />
-      <ArticleTile />
+      <CurrentProjectTile />
+      <EducationTile />
       <SocialTile />
     </div>
   );

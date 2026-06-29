@@ -59,12 +59,23 @@ export type Project = {
 	repoUrl?: string;
 };
 
-export type Article = {
-	tag: string;
-	readTime: string;
-	title: string;
-	excerpt: string;
-	url: string;
+export type EducationItem = {
+	institution: string;
+	degree: string;
+	period: string;
+	detail: string;
+	icon: string;
+	accent: Accent;
+};
+
+export type CurrentProject = {
+	status: string;
+	name: string;
+	summary: string;
+	/** Rough completion percentage shown as a progress bar (0–100). */
+	progress: number;
+	tags: Tag[];
+	url?: string;
 };
 
 export type Experience = {
@@ -96,8 +107,6 @@ export const profile = {
 	},
 	bio: "I'm a Next.js and TypeScript specialist focused on creating scalable, architecturally sound applications that don't compromise on design.",
 	email: "arda3105ozcan@gmail.com",
-	// TODO: set your GitHub username to power the live contribution graph.
-	githubUsername: "DinVisel",
 	resumeUrl: "https://github.com/DinVisel",
 	arsenalQuote:
 		"Continuously optimizing the stack for performance and developer experience.",
@@ -245,19 +254,32 @@ export const projects: Project[] = [
 	},
 ];
 
-export const contributions = {
-	totalPRs: "2.4k+",
-	activeStreak: "42 Days",
-};
-
-export const featuredArticle: Article = {
-	tag: "Article",
-	readTime: "5 min read",
-	title: "The Future of RSCs",
-	excerpt:
-		"Exploring the architectural shifts in React Server Components and what it means for the next generation of web apps.",
+// TODO: replace with the project you're actively building right now.
+export const currentProject: CurrentProject = {
+	status: "In Development",
+	name: "New Project",
+	summary:
+		"Actively building my next product — a short one-liner about what it does goes here.",
+	progress: 60,
+	tags: [
+		{ label: "Next.js", accent: "on-surface" },
+		{ label: "TypeScript", accent: "secondary" },
+		{ label: "PostgreSQL", accent: "tertiary" },
+	],
 	url: "#",
 };
+
+// TODO: fill in your real education (institution, degree, dates).
+export const education: EducationItem[] = [
+	{
+		institution: "Your University",
+		degree: "B.Sc. Computer Engineering",
+		period: "2022 — Present",
+		detail: "Relevant coursework, focus, or honors.",
+		icon: "school",
+		accent: "primary",
+	},
+];
 
 export const socialTileLinks: SocialLink[] = [
 	{ label: "Website", href: "#", icon: "link", accent: "primary" },
