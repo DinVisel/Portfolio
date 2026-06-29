@@ -316,13 +316,12 @@ export const currentProject: CurrentProject = {
 	url: "https://cov0.com",
 };
 
-// TODO: fill in your real education (institution, degree, dates).
 export const education: EducationItem[] = [
 	{
-		institution: "Your University",
-		degree: "B.Sc. Computer Engineering",
-		period: "2022 — Present",
-		detail: "Relevant coursework, focus, or honors.",
+		institution: "Yasar University",
+		degree: "B.Sc. Software Engineering",
+		period: "2023 — Present",
+		detail: "Full Scholarship",
 		icon: "school",
 		accent: "primary",
 	},
