@@ -344,7 +344,6 @@ export const footerLinks: NavLink[] = [
 		label: "LinkedIn",
 		href: "https://www.linkedin.com/in/arda-özcan-707671327",
 	},
-	{ label: "Twitter", href: "#" },
 	{ label: "Email", href: "mailto:arda3105ozcan@gmail.com" },
 ];
 
@@ -361,7 +360,7 @@ export const experiences: Experience[] = [
 			"Rebuilt and extended the UI of a legacy Delphi application nearly 30 years old, modernizing its workflows for the researcher's needs.",
 			"Reconciled and validated complex relational data during the migration to keep the application fully functional on the new database.",
 		],
-		stack: ["PostgreSQL", "Microsoft SQL Server", "Delphi", "Data Migration"],
+		stack: ["PostgreSQL", "Microsoft SQL Server", ".NET", "Data Migration"],
 	},
 ];
 
@@ -375,15 +374,15 @@ export const contactChannels: ContactChannel[] = [
 	},
 	{
 		label: "GitHub",
-		value: "@username",
+		value: "@DinVisel",
 		href: "https://github.com/DinVisel",
 		icon: "code",
 		accent: "secondary",
 	},
 	{
 		label: "LinkedIn",
-		value: "in/username",
-		href: "#",
+		value: "in/arda-özcan-707671327",
+		href: "https://www.linkedin.com/in/arda-özcan-707671327",
 		icon: "person",
 		accent: "tertiary",
 	},
