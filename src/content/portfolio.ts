@@ -131,6 +131,95 @@ export const techStack: Tech[] = [
 
 export const projects: Project[] = [
 	{
+		slug: "edlib",
+		title: "EdLib",
+		badge: "Live on iOS & Android",
+		summary:
+			"Cross-platform education platform that fuses primary-school classroom management with a follow-graph-ranked social feed for teachers.",
+		overview:
+			"EdLib is a cross-platform education platform for primary-school teachers that fuses classroom management — students, classes, attendance, homework, reading logs, quizzes — with a social network where teachers publish and discover teaching material through a personalized, follow-graph-ranked feed. It ships as a Flutter app for iOS and Android, an ASP.NET Core 10 API backed by PostgreSQL, and a Next.js admin console, plus a static marketing and legal site. Submitted to the Apple App Store and Google Play, the build spans auth (JWT + rotating refresh tokens + Google/Apple sign-in), real-time SignalR notifications, Cloudflare R2 object storage, content moderation, and a custom feed-ranking algorithm.",
+		tags: [
+			{ label: "Flutter", accent: "on-surface" },
+			{ label: "ASP.NET Core 10", accent: "primary" },
+			{ label: "PostgreSQL", accent: "secondary" },
+			{ label: "SignalR", accent: "tertiary" },
+			{ label: "Next.js", accent: "primary" },
+		],
+		stack: [
+			{ label: "Mobile", value: "Flutter · Riverpod · dio · go_router" },
+			{ label: "Backend", value: "ASP.NET Core 10 · EF Core 10" },
+			{ label: "Database", value: "PostgreSQL (Npgsql)" },
+			{ label: "Admin", value: "Next.js 14 · React · Recharts" },
+			{ label: "Realtime", value: "SignalR" },
+			{ label: "Storage", value: "Cloudflare R2 (S3-compatible)" },
+			{ label: "Moderation", value: "AWS Rekognition" },
+			{ label: "Testing", value: "xUnit · in-memory SQLite" },
+			{ label: "DevOps", value: "Docker · Vercel" },
+		],
+		features: [
+			{
+				title: "Follow-Graph Feed Ranking",
+				description:
+					"A configurable ranking function blends follow-graph distance, exponential recency decay, log-scaled engagement, and a per-author trust multiplier — computed per request in memory, fully unit-tested, and retunable from config without a redeploy.",
+			},
+			{
+				title: "Unified Identity Model",
+				description:
+					"A single user table with role-based Teacher, Student, and Admin profiles behind one auth path, carrying JWT access tokens with rotating refresh tokens and server-verified Google and Apple sign-in.",
+			},
+			{
+				title: "Real-Time Notifications & Moderation",
+				description:
+					"Persisted notifications pushed live over a SignalR hub, with a per-teacher trust score, an admin moderation queue, a profanity filter, and optional AWS Rekognition image moderation behind a pluggable interface.",
+			},
+		],
+		imageAlt: "EdLib cross-platform education platform for teachers.",
+	},
+	{
+		slug: "pecunie",
+		title: "Pecunie",
+		badge: "Full-Stack Platform",
+		summary:
+			"Trading-discipline tool that turns a written entry/stop/target plan and a risk limit into an exact position size — then watches the market and holds the trader to it.",
+		overview:
+			"Pecunie is a full-stack trading-discipline tool: a trader writes an entry/stop/target plan and a per-trade risk limit up front, the system computes the exact position size from that risk, watches the market for the trigger, and later scores whether following the plan actually paid off — a plan engine, not a stock-tip engine. The core sizing, rules, backtesting, and metrics logic lives in a pure library with zero I/O, enforced by architecture tests that fail the build if EF Core, HTTP, or a clock dependency leaks in. It runs under an ASP.NET Core (.NET 10) API with a Next.js web app and a separate admin console, a Flutter companion app for monitoring and journaling, PostgreSQL + TimescaleDB for time-series market data, and Hangfire workers that poll armed plans every five minutes during market hours.",
+		tags: [
+			{ label: ".NET 10", accent: "on-surface" },
+			{ label: "Next.js", accent: "primary" },
+			{ label: "Flutter", accent: "secondary" },
+			{ label: "PostgreSQL", accent: "tertiary" },
+			{ label: "Redis", accent: "primary" },
+		],
+		stack: [
+			{ label: "API", value: "ASP.NET Core (.NET 10) · vertical-slice" },
+			{ label: "Core Domain", value: "Pure rules/backtest engine — zero I/O" },
+			{ label: "Database", value: "PostgreSQL + TimescaleDB" },
+			{ label: "Cache & Jobs", value: "Redis · Hangfire" },
+			{ label: "Web & Admin", value: "Next.js 15 · TanStack Query" },
+			{ label: "Mobile", value: "Flutter · Riverpod · Drift" },
+			{ label: "Market Data", value: "Alpaca · Yahoo Finance · Finnhub" },
+			{ label: "Testing", value: "xUnit · ~91% engine coverage · property-based" },
+		],
+		features: [
+			{
+				title: "Risk-Derived Position Sizing",
+				description:
+					"Position size is computed live from account equity and per-trade and portfolio 'heat' risk caps; a correctly-sized trade can still be rejected if it would push total account risk too high, with correlation warnings across open positions.",
+			},
+			{
+				title: "Backtesting & Monte Carlo Projections",
+				description:
+					"A bar-replay backtest engine with parameter sweeps and a realistic cost model, plus a deterministic future-value savings projector and a 10,000-path Monte Carlo simulation.",
+			},
+			{
+				title: "Multi-Market with Full Turkish Localization",
+				description:
+					"US equities and Borsa İstanbul (BIST) — including BIST tick sizes and cross-currency USD/TRY position sizing with live FX — with the UI, ~75-term finance glossary, alert emails, and API errors all translated into Turkish.",
+			},
+		],
+		imageAlt: "Pecunie trading-discipline platform dashboard.",
+	},
+	{
 		slug: "aptly",
 		title: "Aptly",
 		badge: "Live in Production",
