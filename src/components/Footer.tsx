@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { footerLinks, profile } from "@/content/portfolio";
 
 export default function Footer() {
@@ -25,6 +26,13 @@ export default function Footer() {
 				© {new Date().getFullYear()} {profile.brand}
 			</div>
 			<div className="flex gap-8">
+				<Link
+					href="/showcase"
+					transitionTypes={["nav-forward"]}
+					className="font-code-md text-code-md text-on-surface-variant hover:text-tertiary hover:translate-x-1 transition-all cursor-pointer"
+				>
+					Showcase
+				</Link>
 				{footerLinks.map((link) => (
 					<a
 						key={link.label}

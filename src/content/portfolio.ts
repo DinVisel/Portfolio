@@ -21,6 +21,16 @@ export type Tech = {
 	name: string;
 	icon: string;
 	accent: Accent;
+	/** One-line "what I use it for" note, shown in the showcase stack orbit. */
+	note?: string;
+};
+
+export type Metric = {
+	label: string;
+	value: number;
+	suffix?: string;
+	icon: string;
+	accent: Accent;
 };
 
 export type Tag = {
@@ -113,20 +123,86 @@ export const profile = {
 };
 
 export const navLinks: NavLink[] = [
+	{ label: "Showcase", href: "/showcase" },
 	{ label: "Projects", href: "/projects" },
 	{ label: "Experience", href: "/experience" },
 	{ label: "Contact", href: "/contact" },
 ];
 
 export const techStack: Tech[] = [
-	{ name: "Next.js", icon: "deployed_code", accent: "on-surface" },
-	{ name: "TypeScript", icon: "code", accent: "secondary" },
-	{ name: "NestJS", icon: "dns", accent: "primary" },
-	{ name: ".NET", icon: "memory", accent: "tertiary" },
-	{ name: "Go", icon: "bolt", accent: "secondary" },
-	{ name: "PostgreSQL", icon: "database", accent: "tertiary" },
-	{ name: "React", icon: "layers", accent: "primary" },
-	{ name: "Swift", icon: "smartphone", accent: "secondary" },
+	{
+		name: "Next.js",
+		icon: "deployed_code",
+		accent: "on-surface",
+		note: "App Router front ends, statically exported where the host allows it.",
+	},
+	{
+		name: "TypeScript",
+		icon: "code",
+		accent: "secondary",
+		note: "Default language across frontend, backend, and shared types.",
+	},
+	{
+		name: "NestJS",
+		icon: "dns",
+		accent: "primary",
+		note: "Structured Node APIs for platforms that outgrow a single script.",
+	},
+	{
+		name: ".NET",
+		icon: "memory",
+		accent: "tertiary",
+		note: "ASP.NET Core APIs for domains that need strong typing and EF Core.",
+	},
+	{
+		name: "Go",
+		icon: "bolt",
+		accent: "secondary",
+		note: "Standalone services for CPU-heavy work like video processing.",
+	},
+	{
+		name: "PostgreSQL",
+		icon: "database",
+		accent: "tertiary",
+		note: "The default datastore, from small CRMs to multi-million-row migrations.",
+	},
+	{
+		name: "React",
+		icon: "layers",
+		accent: "primary",
+		note: "Component layer under Next.js, and standalone Vite admin consoles.",
+	},
+	{
+		name: "Swift",
+		icon: "smartphone",
+		accent: "secondary",
+		note: "Native iOS apps where a cross-platform shell isn't worth it.",
+	},
+];
+
+export const metrics: Metric[] = [
+	{ label: "Live products shipped", value: 6, icon: "rocket_launch", accent: "primary" },
+	{
+		label: "Rows migrated in one project",
+		value: 3,
+		suffix: "M",
+		icon: "database",
+		accent: "secondary",
+	},
+	{
+		label: "Years modernizing a legacy app",
+		value: 30,
+		icon: "history",
+		accent: "tertiary",
+	},
+	{ label: "Core technologies in rotation", value: 8, icon: "layers", accent: "primary" },
+];
+
+export const bootLog: string[] = [
+	"> initializing dev_root.sys",
+	"> loading projects [6]",
+	"> linking stack: next.js · typescript · .net · go · postgresql",
+	"> status: available",
 ];
 
 export const projects: Project[] = [
@@ -389,6 +465,18 @@ export const projects: Project[] = [
 	},
 ];
 
+export const terminalCommands: Record<string, string[]> = {
+	help: ["Available commands: help, whoami, projects, stack, contact, resume, clear"],
+	whoami: [
+		profile.name,
+		profile.headline.before + profile.headline.highlight + profile.headline.after,
+	],
+	projects: projects.map((p) => `${p.slug} — ${p.title}: ${p.summary}`),
+	stack: techStack.map((t) => `${t.name}${t.note ? " — " + t.note : ""}`),
+	contact: [`email: ${profile.email}`, "github: github.com/DinVisel"],
+	resume: [`resume: ${profile.resumeUrl}`],
+};
+
 export const currentProject: CurrentProject = {
 	status: "Live · Active Development",
 	name: "Cov0 — Football Analysis Platform",
@@ -428,6 +516,7 @@ export const socialTileLinks: SocialLink[] = [
 ];
 
 export const footerLinks: NavLink[] = [
+	{ label: "Resume", href: profile.resumeUrl },
 	{ label: "GitHub", href: "https://github.com/DinVisel" },
 	{
 		label: "LinkedIn",

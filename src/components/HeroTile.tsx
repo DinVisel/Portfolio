@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Icon from "./Icon";
 import Typewriter from "./motion/Typewriter";
 import Magnetic from "./motion/Magnetic";
@@ -63,21 +64,22 @@ export default function HeroTile() {
       </div>
       <div className="mt-8 flex gap-4">
         <Magnetic>
-          <a
-            href={`mailto:${profile.email}`}
+          <Link
+            href="/showcase"
+            transitionTypes={["nav-forward"]}
             className="bg-primary px-6 py-3 rounded-lg font-body-md text-on-primary font-bold flex items-center gap-2 hover:brightness-105 transition-all active:scale-95"
           >
-            <Icon name="mail" />
-            Get In Touch
-          </a>
+            Enter Showcase
+            <Icon name="arrow_forward" />
+          </Link>
         </Magnetic>
         <Magnetic>
           <a
-            href={profile.resumeUrl}
+            href={`mailto:${profile.email}`}
             className="border border-secondary/30 px-6 py-3 rounded-lg font-body-md text-secondary font-bold flex items-center gap-2 hover:bg-secondary/5 transition-all active:scale-95"
           >
-            <Icon name="download" />
-            Resume
+            <Icon name="mail" />
+            Get In Touch
           </a>
         </Magnetic>
       </div>

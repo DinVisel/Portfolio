@@ -5,7 +5,14 @@ import { useRouter } from "next/navigation";
 import Icon from "@/components/Icon";
 import { navLinks, profile } from "@/content/portfolio";
 
-const staticEntries = [{ label: "Home", href: "/" }, ...navLinks];
+const staticEntries = [
+	{ label: "Showcase", href: "/showcase", external: false },
+	{ label: "Home", href: "/", external: false },
+	...navLinks
+		.filter((link) => link.href !== "/showcase")
+		.map((link) => ({ ...link, external: false })),
+	{ label: "Resume", href: profile.resumeUrl, external: true },
+];
 
 export default function CommandPalette() {
 	const [open, setOpen] = useState(false);
@@ -50,9 +57,15 @@ export default function CommandPalette() {
 		setActiveIndex(0);
 	}
 
-	function navigate(href: string) {
+	function navigate(entry: (typeof staticEntries)[number]) {
 		setOpen(false);
-		router.push(href, { transitionTypes: [href === "/" ? "nav-back" : "nav-forward"] });
+		if (entry.external) {
+			window.open(entry.href, "_blank", "noopener,noreferrer");
+			return;
+		}
+		router.push(entry.href, {
+			transitionTypes: [entry.href === "/" ? "nav-back" : "nav-forward"],
+		});
 	}
 
 	function onDialogKeyDown(e: React.KeyboardEvent) {
@@ -74,7 +87,7 @@ export default function CommandPalette() {
 		if (e.key === "Enter") {
 			e.preventDefault();
 			const entry = results[activeIndex];
-			if (entry) navigate(entry.href);
+			if (entry) navigate(entry);
 			return;
 		}
 		if (e.key === "Tab") {
@@ -125,7 +138,7 @@ export default function CommandPalette() {
 							<button
 								type="button"
 								onMouseEnter={() => setActiveIndex(index)}
-								onClick={() => navigate(entry.href)}
+								onClick={() => navigate(entry)}
 								className={`w-full text-left px-4 py-2.5 flex items-center justify-between font-body-md text-body-md transition-colors ${
 									index === activeIndex
 										? "bg-surface-container-high text-primary"

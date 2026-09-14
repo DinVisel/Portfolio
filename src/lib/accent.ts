@@ -36,3 +36,12 @@ export const accentHoverText: Record<Accent, string> = {
   tertiary: "hover:text-tertiary",
   "on-surface": "hover:text-on-surface",
 };
+
+// Literal hex values mirroring the `--color-*` tokens in globals.css, for
+// contexts (three.js materials, canvas) that can't consume a CSS variable.
+export const accentHex: Record<Accent, string> = {
+  primary: "#b2cdbb",
+  secondary: "#b8c8da",
+  tertiary: "#f8b8a0",
+  "on-surface": "#e5e2e1",
+};
