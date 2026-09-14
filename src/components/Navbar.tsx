@@ -48,6 +48,7 @@ export default function Navbar() {
 				<Link
 					href="/"
 					aria-label="Home"
+					transitionTypes={["nav-back"]}
 					className="flex items-center gap-2 hover:opacity-80 transition-opacity"
 				>
 					<span className="font-code-md text-code-md font-bold text-secondary">
@@ -61,6 +62,7 @@ export default function Navbar() {
 							<Link
 								key={link.label}
 								data-active={isActive ? "true" : undefined}
+								transitionTypes={["nav-forward"]}
 								className={`relative font-body-md text-body-md transition-colors duration-200 ${
 									isActive
 										? "text-secondary"
@@ -97,6 +99,7 @@ export default function Navbar() {
 					<Link
 						href="/"
 						aria-label="Home"
+						transitionTypes={["nav-back"]}
 						className="p-2 rounded-lg hover:bg-surface-variant transition-colors active:scale-95"
 					>
 						<Icon name="terminal" className="text-primary" />

@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Icon from "@/components/Icon";
+import Magnetic from "@/components/motion/Magnetic";
+import Stagger from "@/components/motion/Stagger";
+import ContactChannelCard from "@/components/ContactChannelCard";
 import { contact, contactChannels, profile } from "@/content/portfolio";
-import { accentText } from "@/lib/accent";
 
 export const metadata: Metadata = {
   title: "Contact | Arda Özcan",
@@ -35,47 +37,23 @@ export default function ContactPage() {
               </span>
             </div>
 
-            <a
-              href={`mailto:${profile.email}`}
-              className="mt-8 inline-flex items-center gap-2 bg-primary px-6 py-3 rounded-lg font-body-md text-on-primary font-bold hover:brightness-105 transition-all active:scale-95"
-            >
-              <Icon name="mail" />
-              {profile.email}
-            </a>
+            <Magnetic className="mt-8">
+              <a
+                href={`mailto:${profile.email}`}
+                className="inline-flex items-center gap-2 bg-primary px-6 py-3 rounded-lg font-body-md text-on-primary font-bold hover:brightness-105 transition-all active:scale-95"
+              >
+                <Icon name="mail" />
+                {profile.email}
+              </a>
+            </Magnetic>
           </div>
 
           {/* Channels */}
-          <div className="flex flex-col gap-4">
+          <Stagger className="flex flex-col gap-4" each={60} preserveTransform>
             {contactChannels.map((channel) => (
-              <a
-                key={channel.label}
-                href={channel.href}
-                target={channel.href.startsWith("http") ? "_blank" : undefined}
-                rel={
-                  channel.href.startsWith("http")
-                    ? "noopener noreferrer"
-                    : undefined
-                }
-                className="glass-card rounded-xl p-5 flex items-center gap-4 group"
-              >
-                <span className="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-high border border-outline-variant/10">
-                  <Icon name={channel.icon} className={accentText[channel.accent]} />
-                </span>
-                <div className="flex-grow">
-                  <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
-                    {channel.label}
-                  </div>
-                  <div className="font-body-md text-body-md text-on-surface">
-                    {channel.value}
-                  </div>
-                </div>
-                <Icon
-                  name="north_east"
-                  className="text-on-surface-variant group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-                />
-              </a>
+              <ContactChannelCard key={channel.label} channel={channel} />
             ))}
-          </div>
+          </Stagger>
         </div>
       </main>
       <Footer />

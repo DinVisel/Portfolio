@@ -13,6 +13,10 @@ type StaggerProps = {
 	each?: number;
 	distance?: number;
 	className?: string;
+	/** See Reveal's preserveTransform — set when items manage their own `transform` (TiltCard, etc). */
+	preserveTransform?: boolean;
+	/** Element type for the wrapper — keep list semantics with "ul" when items are "li". */
+	as?: "div" | "ul";
 };
 
 /**
@@ -25,8 +29,10 @@ export default function Stagger({
 	each = 70,
 	distance = 24,
 	className,
+	preserveTransform = false,
+	as = "div",
 }: StaggerProps) {
-	const ref = useRef<HTMLDivElement>(null);
+	const ref = useRef<HTMLDivElement & HTMLUListElement>(null);
 	const reduced = useMotionContext();
 
 	useEffect(() => {
@@ -38,7 +44,7 @@ export default function Stagger({
 		const scope: Scope = createScope({ root: ref }).add(() => {
 			animate(items, {
 				opacity: [0, 1],
-				translateY: [distance, 0],
+				...(preserveTransform ? {} : { translateY: [distance, 0] }),
 				duration: duration.base,
 				delay: stagger(each),
 				ease: easeOutExpo,
@@ -51,7 +57,15 @@ export default function Stagger({
 		});
 
 		return () => scope.revert();
-	}, [reduced, itemSelector, each, distance]);
+	}, [reduced, itemSelector, each, distance, preserveTransform]);
+
+	if (as === "ul") {
+		return (
+			<ul ref={ref} className={className}>
+				{children}
+			</ul>
+		);
+	}
 
 	return (
 		<div ref={ref} className={className}>

@@ -52,7 +52,7 @@ export default function CommandPalette() {
 
 	function navigate(href: string) {
 		setOpen(false);
-		router.push(href);
+		router.push(href, { transitionTypes: [href === "/" ? "nav-back" : "nav-forward"] });
 	}
 
 	function onDialogKeyDown(e: React.KeyboardEvent) {

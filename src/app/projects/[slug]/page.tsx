@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { ViewTransition } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Icon from "@/components/Icon";
+import Reveal from "@/components/motion/Reveal";
+import Stagger from "@/components/motion/Stagger";
 import { projects } from "@/content/portfolio";
 import { accentTag } from "@/lib/accent";
 
@@ -43,6 +46,7 @@ export default async function ProjectDetailPage({
       <main className="flex-grow max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg w-full">
         <Link
           href="/projects"
+          transitionTypes={["nav-back"]}
           className="inline-flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm hover:text-secondary transition-colors mb-8"
         >
           <Icon name="arrow_back" className="text-sm" />
@@ -50,36 +54,38 @@ export default async function ProjectDetailPage({
         </Link>
 
         {/* Cover */}
-        <div className="glass-card rounded-xl overflow-hidden mb-10">
-          <div className="h-56 md:h-72 w-full relative">
-            <div className="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent z-10"></div>
-            {project.image ? (
-              <Image
-                className="w-full h-full object-cover"
-                alt={project.imageAlt}
-                src={project.image}
-                fill
-                sizes="(max-width: 1280px) 100vw, 1280px"
-                priority
-              />
-            ) : (
-              <div
-                className="w-full h-full"
-                style={{
-                  backgroundImage:
-                    "radial-gradient(circle at 30% 20%, rgba(178,205,187,0.25), transparent 60%), radial-gradient(circle at 80% 80%, rgba(184,200,218,0.2), transparent 55%)",
-                }}
-                aria-label={project.imageAlt}
-              />
-            )}
-            <div className="absolute top-5 left-5 z-20">
-              <span className="bg-surface-container-highest/90 px-3 py-1 rounded-full font-label-sm text-label-sm text-secondary border border-outline-variant/20 flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary subtle-pulse"></span>
-                {project.badge}
-              </span>
+        <ViewTransition name={`project-${project.slug}`} share="morph">
+          <div className="glass-card rounded-xl overflow-hidden mb-10">
+            <div className="h-56 md:h-72 w-full relative">
+              <div className="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent z-10"></div>
+              {project.image ? (
+                <Image
+                  className="w-full h-full object-cover"
+                  alt={project.imageAlt}
+                  src={project.image}
+                  fill
+                  sizes="(max-width: 1280px) 100vw, 1280px"
+                  priority
+                />
+              ) : (
+                <div
+                  className="w-full h-full"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(circle at 30% 20%, rgba(178,205,187,0.25), transparent 60%), radial-gradient(circle at 80% 80%, rgba(184,200,218,0.2), transparent 55%)",
+                  }}
+                  aria-label={project.imageAlt}
+                />
+              )}
+              <div className="absolute top-5 left-5 z-20">
+                <span className="bg-surface-container-highest/90 px-3 py-1 rounded-full font-label-sm text-label-sm text-secondary border border-outline-variant/20 flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary subtle-pulse"></span>
+                  {project.badge}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
+        </ViewTransition>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main content */}
@@ -98,17 +104,21 @@ export default async function ProjectDetailPage({
               ))}
             </div>
 
-            <h2 className="font-headline-md text-headline-md text-on-surface mb-3">
-              Overview
-            </h2>
-            <p className="font-body-lg text-body-lg text-on-surface-variant mb-10">
-              {project.overview}
-            </p>
+            <Reveal>
+              <div>
+                <h2 className="font-headline-md text-headline-md text-on-surface mb-3">
+                  Overview
+                </h2>
+                <p className="font-body-lg text-body-lg text-on-surface-variant mb-10">
+                  {project.overview}
+                </p>
+              </div>
+            </Reveal>
 
             <h2 className="font-headline-md text-headline-md text-on-surface mb-4">
               Key Features
             </h2>
-            <ul className="flex flex-col gap-4">
+            <Stagger as="ul" className="flex flex-col gap-4" each={80} distance={16}>
               {project.features.map((feature) => (
                 <li
                   key={feature.title}
@@ -125,7 +135,7 @@ export default async function ProjectDetailPage({
                   </div>
                 </li>
               ))}
-            </ul>
+            </Stagger>
           </div>
 
           {/* Sidebar */}
