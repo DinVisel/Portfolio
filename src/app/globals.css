@@ -112,37 +112,17 @@ body {
 }
 
 .glass-card {
-  --glow-x: 50%;
-  --glow-y: 50%;
   position: relative;
   background: #201f1f;
   border: 1px solid rgba(140, 146, 141, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
   border-color: rgba(178, 205, 187, 0.3);
   background: #2a2a2a;
-  transform: translateY(-2px);
-}
-
-.glass-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    280px circle at var(--glow-x) var(--glow-y),
-    rgba(178, 205, 187, 0.12),
-    transparent 70%
-  );
-  opacity: 0;
-  transition: opacity var(--duration-quick) var(--ease-out-expo);
-  pointer-events: none;
-}
-
-.glass-card:hover::before {
-  opacity: 1;
 }
 
 @keyframes fade-up {
@@ -297,53 +277,3 @@ body {
   border-radius: 10px;
 }
 
-/* Custom cursor — only enabled (via JS, fine-pointer + motion-allowed) on html.has-custom-cursor. */
-html.has-custom-cursor,
-html.has-custom-cursor * {
-  cursor: none !important;
-}
-
-.cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 32px;
-  height: 32px;
-  margin: -16px 0 0 -16px;
-  border: 1.5px solid var(--color-secondary);
-  border-radius: 9999px;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0;
-  transition:
-    opacity var(--duration-quick) var(--ease-out-expo),
-    width var(--duration-quick) var(--ease-out-expo),
-    height var(--duration-quick) var(--ease-out-expo),
-    margin var(--duration-quick) var(--ease-out-expo),
-    border-color var(--duration-quick) var(--ease-out-expo);
-  will-change: transform;
-}
-
-.cursor-ring__dot {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 4px;
-  height: 4px;
-  margin: -2px 0 0 -2px;
-  border-radius: 9999px;
-  background: var(--color-secondary);
-}
-
-.cursor-ring--active {
-  width: 52px;
-  height: 52px;
-  margin: -26px 0 0 -26px;
-  border-color: var(--color-primary);
-}
-
-@media (pointer: coarse) {
-  .cursor-ring {
-    display: none;
-  }
-}

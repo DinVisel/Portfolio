@@ -123,7 +123,6 @@ export const profile = {
 };
 
 export const navLinks: NavLink[] = [
-	{ label: "Showcase", href: "/showcase" },
 	{ label: "Projects", href: "/projects" },
 	{ label: "Experience", href: "/experience" },
 	{ label: "Contact", href: "/contact" },

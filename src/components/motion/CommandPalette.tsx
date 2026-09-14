@@ -6,11 +6,8 @@ import Icon from "@/components/Icon";
 import { navLinks, profile } from "@/content/portfolio";
 
 const staticEntries = [
-	{ label: "Showcase", href: "/showcase", external: false },
-	{ label: "Home", href: "/", external: false },
-	...navLinks
-		.filter((link) => link.href !== "/showcase")
-		.map((link) => ({ ...link, external: false })),
+	{ label: "Showcase", href: "/", external: false },
+	...navLinks.map((link) => ({ ...link, external: false })),
 	{ label: "Resume", href: profile.resumeUrl, external: true },
 ];
 

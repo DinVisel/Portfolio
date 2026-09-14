@@ -49,7 +49,7 @@ export default function ContactPage() {
           </div>
 
           {/* Channels */}
-          <Stagger className="flex flex-col gap-4" each={60} preserveTransform>
+          <Stagger className="flex flex-col gap-4" each={60}>
             {contactChannels.map((channel) => (
               <ContactChannelCard key={channel.label} channel={channel} />
             ))}
