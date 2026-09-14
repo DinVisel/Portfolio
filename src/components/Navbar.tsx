@@ -83,6 +83,14 @@ export default function Navbar() {
 					)}
 				</div>
 				<div className="flex items-center gap-3">
+					<a
+						href={profile.resumeUrl}
+						download
+						className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-outline-variant/20 text-on-surface-variant hover:text-secondary hover:border-secondary/30 transition-colors font-label-sm text-label-sm"
+					>
+						<Icon name="description" className="text-base" />
+						Resume
+					</a>
 					<button
 						type="button"
 						onClick={() =>

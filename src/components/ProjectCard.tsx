@@ -45,6 +45,9 @@ export default function ProjectCard({ project }: { project: Project }) {
         <h3 className="font-headline-md text-headline-md mb-2 text-on-surface group-hover:text-primary transition-colors">
           {project.title}
         </h3>
+        {project.context && (
+          <p className="font-label-sm text-label-sm text-secondary mb-2">{project.context}</p>
+        )}
         <p className="text-on-surface-variant font-body-md text-body-md mb-4 line-clamp-3">
           {project.summary}
         </p>

@@ -38,6 +38,7 @@ export default function Footer() {
 						key={link.label}
 						className="font-code-md text-code-md text-on-surface-variant hover:text-tertiary hover:translate-x-1 transition-all cursor-pointer"
 						href={link.href}
+						{...(link.label === "Resume" ? { download: true } : undefined)}
 					>
 						{link.label}
 					</a>

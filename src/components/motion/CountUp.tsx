@@ -44,7 +44,8 @@ export default function CountUp({ value, suffix = "", className }: CountUpProps)
 
 	return (
 		<span ref={ref} className={className}>
-			0{suffix}
+			{value}
+			{suffix}
 		</span>
 	);
 }

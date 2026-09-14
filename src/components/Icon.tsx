@@ -10,6 +10,7 @@ export default function Icon({ name, className, filled }: IconProps) {
       className={`material-symbols-outlined${className ? ` ${className}` : ""}`}
       style={filled ? { fontVariationSettings: "'FILL' 1" } : undefined}
       aria-hidden="true"
+      translate="no"
     >
       {name}
     </span>

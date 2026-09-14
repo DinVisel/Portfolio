@@ -93,6 +93,11 @@ export default async function ProjectDetailPage({
             <h1 className="font-headline-lg text-headline-lg md:text-headline-xl md:font-headline-xl text-on-surface">
               {project.title}
             </h1>
+            {project.context && (
+              <p className="font-label-sm text-label-sm text-secondary mt-2">
+                {project.context}
+              </p>
+            )}
             <div className="flex flex-wrap gap-2 mt-5 mb-8">
               {project.tags.map((tag) => (
                 <span
@@ -160,32 +165,35 @@ export default async function ProjectDetailPage({
                 ))}
               </dl>
 
-              {(project.liveUrl || project.repoUrl) && (
-                <div className="mt-6 flex flex-col gap-3">
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-primary px-5 py-3 rounded-lg font-body-md text-on-primary font-bold flex items-center justify-center gap-2 hover:brightness-105 transition-all active:scale-95"
-                    >
-                      <Icon name="open_in_new" className="text-base" />
-                      Visit Live Site
-                    </a>
-                  )}
-                  {project.repoUrl && (
-                    <a
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="border border-secondary/30 px-5 py-3 rounded-lg font-body-md text-secondary font-bold flex items-center justify-center gap-2 hover:bg-secondary/5 transition-all active:scale-95"
-                    >
-                      <Icon name="code" className="text-base" />
-                      View Source
-                    </a>
-                  )}
-                </div>
-              )}
+              <div className="mt-6 flex flex-col gap-3">
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-primary px-5 py-3 rounded-lg font-body-md text-on-primary font-bold flex items-center justify-center gap-2 hover:brightness-105 transition-all active:scale-95"
+                  >
+                    <Icon name="open_in_new" className="text-base" />
+                    Visit Live Site
+                  </a>
+                )}
+                {project.repoUrl ? (
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-secondary/30 px-5 py-3 rounded-lg font-body-md text-secondary font-bold flex items-center justify-center gap-2 hover:bg-secondary/5 transition-all active:scale-95"
+                  >
+                    <Icon name="code" className="text-base" />
+                    View Source
+                  </a>
+                ) : (
+                  <div className="flex items-center justify-center gap-2 font-label-sm text-label-sm text-on-surface-variant">
+                    <Icon name="lock" className="text-sm" />
+                    Source is private
+                  </div>
+                )}
+              </div>
             </div>
           </aside>
         </div>

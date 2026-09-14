@@ -55,6 +55,8 @@ export type Project = {
 	badge: string;
 	/** One-liner used on cards and the featured tile. */
 	summary: string;
+	/** Optional one-line context shown under the title, e.g. "Personal project · ~91% test coverage". Omit rather than guess. */
+	context?: string;
 	/** Longer description for the project detail page. */
 	overview: string;
 	/** Key technology chips shown on cards (keep to ~3–5). */
@@ -106,18 +108,21 @@ export type ContactChannel = {
 	accent: Accent;
 };
 
+// Deployed to GitHub Pages as a project site at /Portfolio; only in production builds.
+const basePath = process.env.NODE_ENV === "production" ? "/Portfolio" : "";
+
 export const profile = {
 	brand: "DEV_ROOT.SYS",
 	name: "Arda Özcan",
 	availability: "Available for hire",
 	headline: {
 		before: "Building ",
-		highlight: "high-performance",
-		after: " web experiences with precision.",
+		highlight: "backend systems",
+		after: " that run in production.",
 	},
-	bio: "I'm a Next.js and TypeScript specialist focused on creating scalable, architecturally sound applications that don't compromise on design.",
+	bio: "I'm a backend engineer building production APIs and data platforms with ASP.NET Core, NestJS, and PostgreSQL — with Next.js and TypeScript across the full stack when the project calls for it.",
 	email: "arda3105ozcan@gmail.com",
-	resumeUrl: "https://github.com/DinVisel",
+	resumeUrl: `${basePath}/Arda_Ozcan_Backend_Engineer.pdf`,
 	arsenalQuote:
 		"Continuously optimizing the stack for performance and developer experience.",
 };
@@ -206,6 +211,47 @@ export const bootLog: string[] = [
 
 export const projects: Project[] = [
 	{
+		slug: "legacy-data-migration",
+		title: "Legacy Data Migration",
+		badge: "Client Work",
+		context: "Client project · Freelance contract, Jan–Mar 2026",
+		summary:
+			"Migrated a ~3,000,000-row production database from Microsoft SQL Server to PostgreSQL with zero data loss, and modernized the ~30-year-old Delphi application built on top of it.",
+		overview:
+			"A freelance contract to modernize a legacy desktop research application supporting an academic pharmacology thesis. The core of the work was migrating a production database of roughly 3 million rows from Microsoft SQL Server to PostgreSQL with full data integrity and zero data loss, reconciling and validating complex relational data throughout so the application stayed fully functional on the new database. Alongside the migration, the UI of a Delphi application nearly 30 years old was rebuilt and extended to modernize its workflows for the researcher's needs — the kind of unglamorous, high-stakes work of operating inside someone else's decades-old system without breaking it.",
+		tags: [
+			{ label: "PostgreSQL", accent: "tertiary" },
+			{ label: "SQL Server", accent: "on-surface" },
+			{ label: ".NET", accent: "primary" },
+			{ label: "Data Migration", accent: "secondary" },
+		],
+		stack: [
+			{ label: "Source", value: "Microsoft SQL Server" },
+			{ label: "Target", value: "PostgreSQL" },
+			{ label: "Legacy App", value: "Delphi (~30 years old)" },
+			{ label: "Backend", value: ".NET" },
+			{ label: "Engagement", value: "Freelance · Contract, 01/2026 – 03/2026" },
+		],
+		features: [
+			{
+				title: "Zero-Loss Data Migration",
+				description:
+					"~3,000,000 rows migrated from Microsoft SQL Server to PostgreSQL with full data integrity and zero data loss, reconciling complex relational data along the way.",
+			},
+			{
+				title: "30-Year-Old Codebase, Modernized",
+				description:
+					"Rebuilt and extended the UI of a Delphi application nearly three decades old, modernizing its workflows to fit the researcher's current needs without a full rewrite.",
+			},
+			{
+				title: "Validated Under Real Use",
+				description:
+					"Every reconciled table was validated against the live research workflow, so the application stayed fully functional throughout the cutover to the new database.",
+			},
+		],
+		imageAlt: "Legacy Delphi research application migrated from SQL Server to PostgreSQL.",
+	},
+	{
 		slug: "edlib",
 		title: "EdLib",
 		badge: "Live on iOS & Android",
@@ -254,6 +300,7 @@ export const projects: Project[] = [
 		slug: "pecunie",
 		title: "Pecunie",
 		badge: "Full-Stack Platform",
+		context: "Personal project · ~91% engine test coverage",
 		summary:
 			"Trading-discipline tool that turns a written entry/stop/target plan and a risk limit into an exact position size — then watches the market and holds the trader to it.",
 		overview:

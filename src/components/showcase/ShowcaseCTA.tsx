@@ -1,18 +1,41 @@
 import Icon from "@/components/Icon";
 import Reveal from "@/components/motion/Reveal";
 import TerminalPanel from "./TerminalPanel";
-import { contact, contactChannels } from "@/content/portfolio";
+import { contact, contactChannels, profile } from "@/content/portfolio";
 import { accentText } from "@/lib/accent";
 
 export default function ShowcaseCTA() {
+	const linkedin = contactChannels.find((c) => c.label === "LinkedIn");
+
 	return (
 		<section className="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg w-full text-center">
 			<span className="font-label-sm text-label-sm text-secondary uppercase tracking-widest">
 				{"// get_in_touch"}
 			</span>
-			<h2 className="font-headline-lg text-headline-lg text-on-surface mt-3 mb-10">
+			<h2 className="font-headline-lg text-headline-lg text-on-surface mt-3 mb-6">
 				{contact.heading}
 			</h2>
+
+			<div className="flex flex-wrap items-center justify-center gap-4 mb-10">
+				<a
+					href={`mailto:${profile.email}`}
+					className="inline-flex items-center gap-2 bg-primary px-6 py-3 rounded-lg font-body-md text-on-primary font-bold hover:brightness-105 transition-all active:scale-95"
+				>
+					<Icon name="mail" />
+					{profile.email}
+				</a>
+				{linkedin && (
+					<a
+						href={linkedin.href}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="inline-flex items-center gap-2 border border-secondary/30 px-6 py-3 rounded-lg font-body-md text-secondary font-bold hover:bg-secondary/5 transition-all active:scale-95"
+					>
+						<Icon name="person" />
+						LinkedIn
+					</a>
+				)}
+			</div>
 
 			<Reveal>
 				<TerminalPanel />
