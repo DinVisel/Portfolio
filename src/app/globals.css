@@ -296,3 +296,54 @@ body {
   background: #353534;
   border-radius: 10px;
 }
+
+/* Custom cursor — only enabled (via JS, fine-pointer + motion-allowed) on html.has-custom-cursor. */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  border: 1.5px solid var(--color-secondary);
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition:
+    opacity var(--duration-quick) var(--ease-out-expo),
+    width var(--duration-quick) var(--ease-out-expo),
+    height var(--duration-quick) var(--ease-out-expo),
+    margin var(--duration-quick) var(--ease-out-expo),
+    border-color var(--duration-quick) var(--ease-out-expo);
+  will-change: transform;
+}
+
+.cursor-ring__dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  margin: -2px 0 0 -2px;
+  border-radius: 9999px;
+  background: var(--color-secondary);
+}
+
+.cursor-ring--active {
+  width: 52px;
+  height: 52px;
+  margin: -26px 0 0 -26px;
+  border-color: var(--color-primary);
+}
+
+@media (pointer: coarse) {
+  .cursor-ring {
+    display: none;
+  }
+}

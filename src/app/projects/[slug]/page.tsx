@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { ViewTransition } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
@@ -8,6 +7,7 @@ import Footer from "@/components/Footer";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/motion/Reveal";
 import Stagger from "@/components/motion/Stagger";
+import ShimmerImage from "@/components/motion/ShimmerImage";
 import { projects } from "@/content/portfolio";
 import { accentTag } from "@/lib/accent";
 
@@ -59,7 +59,7 @@ export default async function ProjectDetailPage({
             <div className="h-56 md:h-72 w-full relative">
               <div className="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent z-10"></div>
               {project.image ? (
-                <Image
+                <ShimmerImage
                   className="w-full h-full object-cover"
                   alt={project.imageAlt}
                   src={project.image}

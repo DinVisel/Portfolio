@@ -5,7 +5,9 @@ import "material-symbols/outlined.css";
 import "./globals.css";
 import MotionProvider from "@/components/motion/MotionProvider";
 import ScrollProgress from "@/components/motion/ScrollProgress";
+import RouteProgress from "@/components/motion/RouteProgress";
 import CommandPalette from "@/components/motion/CommandPalette";
+import CustomCursor from "@/components/motion/CustomCursor";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -20,6 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://dinvisel.github.io/Portfolio/"),
   title: "DevTerminal | Portfolio",
   description:
     "Next.js and TypeScript specialist building high-performance, scalable web experiences.",
@@ -38,7 +41,9 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col pt-20">
         <MotionProvider>
           <ScrollProgress />
+          <RouteProgress />
           <CommandPalette />
+          <CustomCursor />
           <ViewTransition
             enter={{
               "nav-forward": "nav-forward",

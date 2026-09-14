@@ -1,8 +1,8 @@
 import { ViewTransition } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import Icon from "./Icon";
 import TiltCard from "./motion/TiltCard";
+import ShimmerImage from "./motion/ShimmerImage";
 import { projects } from "@/content/portfolio";
 import { accentTag } from "@/lib/accent";
 
@@ -15,7 +15,7 @@ export default function FeaturedProjectTile() {
         <div className="h-48 w-full relative">
           <div className="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent z-10"></div>
           {project.image ? (
-            <Image
+            <ShimmerImage
               className="w-full h-full object-cover grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
               alt={project.imageAlt}
               src={project.image}

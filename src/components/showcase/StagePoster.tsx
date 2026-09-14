@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ShimmerImage from "@/components/motion/ShimmerImage";
 import type { Project } from "@/content/portfolio";
 
 /** Flat SSR'd baseline for a project's showcase visual — always renders, 3D upgrades over it. */
@@ -6,7 +6,7 @@ export default function StagePoster({ project }: { project: Project }) {
 	return (
 		<div className="aspect-[16/10] w-full rounded-xl overflow-hidden glass-card relative">
 			{project.image ? (
-				<Image
+				<ShimmerImage
 					className="w-full h-full object-cover"
 					alt={project.imageAlt}
 					src={project.image}
