@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Icon from "./Icon";
+import TiltCard from "./motion/TiltCard";
 import { projects } from "@/content/portfolio";
 import { accentTag } from "@/lib/accent";
 
@@ -8,7 +9,7 @@ export default function FeaturedProjectTile() {
   const project = projects[0];
 
   return (
-    <div className="md:col-span-5 md:row-span-2 glass-card rounded-xl overflow-hidden flex flex-col">
+    <TiltCard className="md:col-span-5 md:row-span-2 glass-card rounded-xl overflow-hidden flex flex-col">
       <div className="h-48 w-full relative">
         <div className="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent z-10"></div>
         {project.image ? (
@@ -54,10 +55,17 @@ export default function FeaturedProjectTile() {
         </div>
         <div className="mt-auto flex items-center justify-between">
           <Link
-            className="text-secondary font-label-sm text-label-sm flex items-center gap-1 hover:underline"
+            className="group/link text-secondary font-label-sm text-label-sm flex items-center gap-1"
             href={`/projects/${project.slug}`}
           >
-            View Case Study <Icon name="north_east" className="text-sm" />
+            <span className="relative">
+              View Case Study
+              <span className="absolute left-0 -bottom-0.5 h-px w-full bg-secondary scale-x-0 origin-left group-hover/link:scale-x-100 transition-transform duration-[220ms] ease-[var(--ease-out-expo)]" />
+            </span>
+            <Icon
+              name="north_east"
+              className="text-sm transition-transform duration-[220ms] ease-[var(--ease-out-expo)] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+            />
           </Link>
           {project.liveUrl && (
             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
@@ -66,6 +74,6 @@ export default function FeaturedProjectTile() {
           )}
         </div>
       </div>
-    </div>
+    </TiltCard>
   );
 }

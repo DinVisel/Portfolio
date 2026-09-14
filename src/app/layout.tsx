@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
+import { ViewTransition } from "react";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "material-symbols/outlined.css";
 import "./globals.css";
+import MotionProvider from "@/components/motion/MotionProvider";
+import ScrollProgress from "@/components/motion/ScrollProgress";
+import CommandPalette from "@/components/motion/CommandPalette";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -31,7 +35,13 @@ export default function RootLayout({
       lang="en"
       className={`dark ${inter.variable} ${jetbrainsMono.variable} antialiased`}
     >
-      <body className="min-h-screen flex flex-col pt-20">{children}</body>
+      <body className="min-h-screen flex flex-col pt-20">
+        <MotionProvider>
+          <ScrollProgress />
+          <CommandPalette />
+          <ViewTransition>{children}</ViewTransition>
+        </MotionProvider>
+      </body>
     </html>
   );
 }

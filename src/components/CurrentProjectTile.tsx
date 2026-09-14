@@ -1,4 +1,6 @@
 import Icon from "./Icon";
+import CountUp from "./motion/CountUp";
+import ProgressBar from "./motion/ProgressBar";
 import { currentProject } from "@/content/portfolio";
 import { accentTag } from "@/lib/accent";
 
@@ -41,15 +43,10 @@ export default function CurrentProjectTile() {
             Progress
           </span>
           <span className="font-label-sm text-label-sm text-secondary font-bold">
-            {project.progress}%
+            <CountUp value={project.progress} suffix="%" />
           </span>
         </div>
-        <div className="h-1.5 w-full rounded-full bg-surface-container-highest overflow-hidden">
-          <div
-            className="h-full rounded-full bg-secondary transition-all"
-            style={{ width: `${project.progress}%` }}
-          ></div>
-        </div>
+        <ProgressBar progress={project.progress} />
       </div>
     </div>
   );

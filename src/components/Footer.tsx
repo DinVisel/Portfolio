@@ -1,26 +1,44 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { footerLinks, profile } from "@/content/portfolio";
 
 export default function Footer() {
-  return (
-    <footer className="w-full py-stack-lg border-t border-outline-variant/20 bg-surface-container-lowest flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-stack-md">
-      <div className="font-code-md text-code-md text-secondary">
-        © {new Date().getFullYear()} {profile.brand}
-      </div>
-      <div className="flex gap-8">
-        {footerLinks.map((link) => (
-          <a
-            key={link.label}
-            className="font-code-md text-code-md text-on-surface-variant hover:text-tertiary hover:translate-x-1 transition-all cursor-pointer"
-            href={link.href}
-          >
-            {link.label}
-          </a>
-        ))}
-      </div>
-      <div className="text-tertiary font-code-md text-code-md flex items-center gap-2">
-        <span className="h-1.5 w-1.5 rounded-full bg-tertiary subtle-pulse"></span>
-        System Status: Nominal
-      </div>
-    </footer>
-  );
+	const [time, setTime] = useState<string | null>(null);
+
+	useEffect(() => {
+		const update = () =>
+			setTime(
+				new Date().toLocaleTimeString(undefined, {
+					hour: "2-digit",
+					minute: "2-digit",
+				})
+			);
+		update();
+		const id = setInterval(update, 1000 * 30);
+		return () => clearInterval(id);
+	}, []);
+
+	return (
+		<footer className="w-full py-stack-lg border-t border-outline-variant/20 bg-surface-container-lowest flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-stack-md">
+			<div className="font-code-md text-code-md text-secondary">
+				© {new Date().getFullYear()} {profile.brand}
+			</div>
+			<div className="flex gap-8">
+				{footerLinks.map((link) => (
+					<a
+						key={link.label}
+						className="font-code-md text-code-md text-on-surface-variant hover:text-tertiary hover:translate-x-1 transition-all cursor-pointer"
+						href={link.href}
+					>
+						{link.label}
+					</a>
+				))}
+			</div>
+			<div className="text-tertiary font-code-md text-code-md flex items-center gap-2">
+				<span className="h-1.5 w-1.5 rounded-full bg-tertiary subtle-pulse"></span>
+				System Status: Nominal{time ? ` · ${time} local` : ""}
+			</div>
+		</footer>
+	);
 }

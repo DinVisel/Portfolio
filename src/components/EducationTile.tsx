@@ -5,7 +5,7 @@ import { accentText } from "@/lib/accent";
 export default function EducationTile() {
   return (
     <div className="md:col-span-3 md:row-span-1 glass-card rounded-xl p-6 flex flex-col group overflow-hidden relative">
-      <div className="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 transition-opacity">
+      <div className="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 group-hover:-translate-x-2 group-hover:translate-y-1 transition-all duration-[420ms] ease-[var(--ease-out-expo)]">
         <Icon name="school" className="text-9xl" />
       </div>
       <div className="flex items-center gap-2 mb-4 relative z-10">

@@ -15,6 +15,9 @@ const nextConfig: NextConfig = {
     // GitHub Pages has no image optimization server.
     unoptimized: true,
   },
+  experimental: {
+    viewTransition: true,
+  },
 };
 
 export default nextConfig;

@@ -96,6 +96,13 @@
   --spacing-margin-desktop: 2.5rem;
   --spacing-gutter: 1.5rem;
 
+  /* ---- Motion ---- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
+  --duration-instant: 120ms;
+  --duration-quick: 220ms;
+  --duration-base: 420ms;
+  --duration-slow: 700ms;
 }
 
 body {
@@ -105,6 +112,9 @@ body {
 }
 
 .glass-card {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  position: relative;
   background: #201f1f;
   border: 1px solid rgba(140, 146, 141, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -114,6 +124,85 @@ body {
   border-color: rgba(178, 205, 187, 0.3);
   background: #2a2a2a;
   transform: translateY(-2px);
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    280px circle at var(--glow-x) var(--glow-y),
+    rgba(178, 205, 187, 0.12),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-quick) var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.glass-card:hover::before {
+  opacity: 1;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
 }
 
 .syntax-string {
