@@ -381,7 +381,8 @@ export const projects: Project[] = [
 					"Built-in tools tailored for solo practitioners and small teams to handle client data, tracking, and scheduling retention.",
 			},
 		],
-		imageAlt: "Aptly scheduling SaaS dashboard.",
+		imageAlt: "Aptly landing page: online appointment booking for small businesses.",
+		image: `${basePath}/projects/aptly.png`,
 		liveUrl: "https://aptly.com.tr",
 	},
 	{
@@ -425,7 +426,8 @@ export const projects: Project[] = [
 					"Footage and assets are stored in Cloudflare R2 and served through Cloudflare's CDN, with Redis caching hot data for low-latency access.",
 			},
 		],
-		imageAlt: "Cov0 football analysis platform interface.",
+		imageAlt: "Cov0 landing page: football video analysis platform.",
+		image: `${basePath}/projects/cov0.png`,
 		liveUrl: "https://cov0.com",
 	},
 	{
@@ -466,7 +468,8 @@ export const projects: Project[] = [
 					"Tailored administrative dashboards that minimize manual retail paperwork for opticians.",
 			},
 		],
-		imageAlt: "OptikData optometry B2B CRM interface.",
+		imageAlt: "OptikData landing page with the optical store sales dashboard.",
+		image: `${basePath}/projects/optikdata.png`,
 		liveUrl: "https://optikdata.com.tr",
 	},
 	{
@@ -506,7 +509,8 @@ export const projects: Project[] = [
 					"Automated, data-driven guidance that helps students turn their weak points into strengths before exam day.",
 			},
 		],
-		imageAlt: "TakipNet exam performance tracking mobile app.",
+		imageAlt: "TakipNet App Store listing with app screenshots.",
+		image: `${basePath}/projects/takipnet.png`,
 		liveUrl: "https://apps.apple.com/us/app/takip-net/id6755928528",
 	},
 ];
