@@ -104,14 +104,6 @@ export default function Navbar() {
 						<Icon name="search" className="text-base" />
 						<kbd className="font-code-md text-code-md">⌘K</kbd>
 					</button>
-					<Link
-						href="/"
-						aria-label="Home"
-						transitionTypes={["nav-back"]}
-						className="p-2 rounded-lg hover:bg-surface-variant transition-colors active:scale-95"
-					>
-						<Icon name="terminal" className="text-primary" />
-					</Link>
 				</div>
 			</div>
 		</nav>

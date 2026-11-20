@@ -14,7 +14,7 @@ const SESSION_KEY = "showcase-boot-played";
 
 export default function ShowcaseBoot() {
 	const reduced = useMotionContext();
-	const canRender3D = useCanRender3D();
+	const canRender3D = useCanRender3D({ allowReducedMotion: true });
 	const [skipped, setSkipped] = useState(true); // default true: matches SSR (no boot animation) until we know better
 	const linesRef = useRef<HTMLDivElement>(null);
 	const timelineRef = useRef<Timeline | null>(null);
@@ -69,7 +69,7 @@ export default function ShowcaseBoot() {
 
 	return (
 		<section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden border-b border-outline-variant/20">
-			{canRender3D && !reduced && <BootField3D resolved={skipped} />}
+			{canRender3D && <BootField3D resolved={skipped} still={reduced} />}
 
 			<div className="relative z-10 flex flex-col items-center text-center px-6">
 				{!skipped && (

@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-function detect(): boolean {
-	if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
+function detect(allowReducedMotion: boolean): boolean {
+	if (!allowReducedMotion && window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+		return false;
 
 	const nav = navigator as Navigator & {
 		connection?: { saveData?: boolean };
@@ -31,15 +32,17 @@ function detect(): boolean {
  * different DOM subtrees, so the initial value can't safely differ between
  * server and client the way a same-markup flag (e.g. reduced motion) can.
  */
-export function useCanRender3D(): boolean {
+export function useCanRender3D({
+	allowReducedMotion = false,
+}: { allowReducedMotion?: boolean } = {}): boolean {
 	const [can, setCan] = useState(false);
 
 	useEffect(() => {
 		// Capability detection is only possible post-mount; SSR and first paint
 		// must both render the poster to avoid hydrating into a different subtree.
 		// eslint-disable-next-line react-hooks/set-state-in-effect
-		setCan(detect());
-	}, []);
+		setCan(detect(allowReducedMotion));
+	}, [allowReducedMotion]);
 
 	return can;
 }
