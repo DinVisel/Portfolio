@@ -249,7 +249,9 @@ export const projects: Project[] = [
 					"Every reconciled table was validated against the live research workflow, so the application stayed fully functional throughout the cutover to the new database.",
 			},
 		],
-		imageAlt: "Legacy Delphi research application migrated from SQL Server to PostgreSQL.",
+		imageAlt: "Green terminal code on a dark computer screen.",
+		// Placeholder: Unsplash photo mwlpHlBgjU0 (Unsplash License).
+		image: "https://images.unsplash.com/photo-1778259205831-cf8f8bfebc80?auto=format&fit=crop&w=1600&q=80",
 	},
 	{
 		slug: "edlib",
@@ -294,7 +296,9 @@ export const projects: Project[] = [
 					"Persisted notifications pushed live over a SignalR hub, with a per-teacher trust score, an admin moderation queue, a profanity filter, and optional AWS Rekognition image moderation behind a pluggable interface.",
 			},
 		],
-		imageAlt: "EdLib cross-platform education platform for teachers.",
+		imageAlt: "A red apple on a stack of books beside alphabet blocks.",
+		// Placeholder: Unsplash photo OyCl7Y4y0Bk (Unsplash License).
+		image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600&q=80",
 	},
 	{
 		slug: "pecunie",
@@ -339,7 +343,9 @@ export const projects: Project[] = [
 					"US equities and Borsa İstanbul (BIST) — including BIST tick sizes and cross-currency USD/TRY position sizing with live FX — with the UI, ~75-term finance glossary, alert emails, and API errors all translated into Turkish.",
 			},
 		],
-		imageAlt: "Pecunie trading-discipline platform dashboard.",
+		imageAlt: "Stock market candlestick chart on a dark screen.",
+		// Placeholder: Unsplash photo fiXLQXAhCfk (Unsplash License).
+		image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1600&q=80",
 	},
 	{
 		slug: "aptly",
