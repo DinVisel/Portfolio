@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { createScope, createTimeline, splitText, stagger, type Scope, type Timeline } from "animejs";
-import { useMotionContext } from "@/components/motion/MotionProvider";
 import { useCanRender3D } from "@/hooks/useCanRender3D";
 import { bootLog, profile } from "@/content/portfolio";
 import Icon from "@/components/Icon";
@@ -13,24 +12,23 @@ const BootField3D = dynamic(() => import("./BootField3D"), { ssr: false });
 const SESSION_KEY = "showcase-boot-played";
 
 export default function ShowcaseBoot() {
-	const reduced = useMotionContext();
 	const canRender3D = useCanRender3D({ allowReducedMotion: true });
 	const [skipped, setSkipped] = useState(true); // default true: matches SSR (no boot animation) until we know better
 	const linesRef = useRef<HTMLDivElement>(null);
 	const timelineRef = useRef<Timeline | null>(null);
 
 	useEffect(() => {
-		// sessionStorage/reduced-motion are only knowable post-mount; the default
+		// sessionStorage is only knowable post-mount; the default
 		// `skipped=true` already matches SSR, so this only ever un-skips fresh sessions.
 		const alreadyPlayed = sessionStorage.getItem(SESSION_KEY) === "1";
-		if (reduced || alreadyPlayed) {
+		if (alreadyPlayed) {
 			// eslint-disable-next-line react-hooks/set-state-in-effect
 			setSkipped(true);
 			return;
 		}
 		sessionStorage.setItem(SESSION_KEY, "1");
 		setSkipped(false);
-	}, [reduced]);
+	}, []);
 
 	useEffect(() => {
 		if (skipped || !linesRef.current) return;
@@ -69,7 +67,7 @@ export default function ShowcaseBoot() {
 
 	return (
 		<section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden border-b border-outline-variant/20">
-			{canRender3D && <BootField3D resolved={skipped} still={reduced} />}
+			{canRender3D && <BootField3D resolved={skipped} />}
 
 			<div className="relative z-10 flex flex-col items-center text-center px-6">
 				{!skipped && (

@@ -20,14 +20,7 @@ const PARTICLE_COUNT = 2000;
  * completes. Cheap (points only, additive blending) — sets the tone before
  * anything else has loaded.
  */
-export default function BootField3D({
-	resolved,
-	still = false,
-}: {
-	resolved: boolean;
-	/** Reduced motion: draw the resolved grid once, no animation loop. */
-	still?: boolean;
-}) {
+export default function BootField3D({ resolved }: { resolved: boolean }) {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const resolvedRef = useRef(resolved);
 
@@ -79,7 +72,7 @@ export default function BootField3D({
 		scene.add(points);
 
 		let running = true;
-		let progress = still ? 1 : 0; // 0 = noise, 1 = resolved grid
+		let progress = 0; // 0 = noise, 1 = resolved grid
 		let t = 0;
 
 		function resize() {
@@ -88,14 +81,13 @@ export default function BootField3D({
 			camera.aspect = clientWidth / Math.max(clientHeight, 1);
 			camera.updateProjectionMatrix();
 			renderer.setSize(clientWidth, clientHeight, false);
-			if (still) tick(true);
 		}
 		resize();
 		const ro = new ResizeObserver(resize);
 		ro.observe(container);
 
-		function tick(force = false) {
-			if (!running && !force) return;
+		function tick() {
+			if (!running) return;
 			t += 0.005;
 			if (resolvedRef.current && progress < 1) progress = Math.min(1, progress + 0.02);
 
@@ -109,7 +101,13 @@ export default function BootField3D({
 					noisePositions[ix + 1] * (1 - progress) +
 					gridPositions[ix + 1] * progress +
 					drift;
-				posAttr.array[ix + 2] = noisePositions[ix + 2] * (1 - progress) + gridPositions[ix + 2] * progress;
+				// Once resolved, the grid keeps breathing with a slow diagonal wave.
+				const wave =
+					Math.sin(gridPositions[ix] * 0.35 + gridPositions[ix + 1] * 0.25 + t * 5) *
+					0.15 *
+					progress;
+				posAttr.array[ix + 2] =
+					noisePositions[ix + 2] * (1 - progress) + gridPositions[ix + 2] * progress + wave;
 			}
 			posAttr.needsUpdate = true;
 			points.rotation.y = t * 0.05 * (1 - progress);
@@ -117,7 +115,7 @@ export default function BootField3D({
 			renderer.render(scene, camera);
 		}
 
-		if (!still) renderer.setAnimationLoop(() => tick());
+		renderer.setAnimationLoop(tick);
 
 		const stopVisibility = observeVisibility(container, (visible) => {
 			running = visible;
@@ -131,7 +129,7 @@ export default function BootField3D({
 			material.dispose();
 			renderer.dispose();
 		};
-	}, [still]);
+	}, []);
 
 	return (
 		<canvas
