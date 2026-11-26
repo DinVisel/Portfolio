@@ -519,6 +519,99 @@ export const projects: Project[] = [
 		image: `${basePath}/projects/takipnet.png`,
 		liveUrl: "https://apps.apple.com/us/app/takip-net/id6755928528",
 	},
+	{
+		slug: "witcher-wiki",
+		title: "Witcher Wiki",
+		badge: "Live on Vercel",
+		context: "Web development midterm · Fan project",
+		summary:
+			"Fan-made Witcher wiki in React + Tailwind — characters, bestiary, castable signs with sound, and a storyline timeline, all fed live from the Witcher Fandom MediaWiki API.",
+		overview:
+			"Witcher Wiki is a fan-made encyclopedia of The Witcher, built with React 19, Vite, Tailwind CSS v4, and React Router v7 for a web development midterm — with no other UI, styling, or animation libraries. Every listing, detail page, and search result comes live from the Witcher Fandom MediaWiki API: paginated category listings with continuation tokens, URL-persisted filters, debounced global search, and detail pages whose HTML is parsed into plain data rather than injected. On top of the required features it layers a lot of craft: a canvas wall of fire on the welcome scene with a noise-based burn-in transition, five castable signs with particle effects and synthesized sound, a scroll-driven storyline where Roach follows a winding SVG road, and a set of mini-games tracked in a localStorage-backed journal.",
+		tags: [
+			{ label: "React 19", accent: "primary" },
+			{ label: "Tailwind CSS", accent: "secondary" },
+			{ label: "Vite", accent: "tertiary" },
+			{ label: "MediaWiki API", accent: "on-surface" },
+		],
+		stack: [
+			{ label: "Frontend", value: "React 19 (hooks) · Vite" },
+			{ label: "Styling", value: "Tailwind CSS v4 (@theme)" },
+			{ label: "Routing", value: "React Router v7" },
+			{ label: "Data", value: "Witcher Fandom MediaWiki API (fetch)" },
+			{ label: "Graphics & Audio", value: "Canvas · SVG · synthesized WAV effects" },
+			{ label: "Tooling", value: "oxlint" },
+			{ label: "Hosting", value: "Vercel" },
+		],
+		features: [
+			{
+				title: "Live Wiki Data, No Backend",
+				description:
+					"Characters, bestiary, signs, and locations load straight from the MediaWiki API with Load more pagination, URL-persisted filters, debounced global search, and readable errors with Retry on every view.",
+			},
+			{
+				title: "Castable Signs & Canvas Effects",
+				description:
+					"Igni, Aard, Quen, Yrden, and Axii each cast a hand-built canvas or CSS effect with its own synthesized sound, bound to keys 1–5, plus a fire-wall welcome scene that burns the home page into view.",
+			},
+			{
+				title: "Ride with Roach & Fan Extras",
+				description:
+					"A scroll-driven storyline where Roach follows a winding SVG road between chapter books, plus a sign memory trial, a bestiary quiz built from the API, and hidden clues — all tracked in a persistent Witcher's Journal.",
+			},
+		],
+		imageAlt: "A medieval castle rising out of the morning fog.",
+		// Placeholder: Unsplash photo 1518709268805-4e9042af9f23 (Unsplash License).
+		image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80",
+		liveUrl: "https://witcher-wiki-eight.vercel.app",
+		repoUrl: "https://github.com/DinVisel/witcher-wiki",
+	},
+	{
+		slug: "posture-quest",
+		title: "Posture Quest",
+		badge: "In Development",
+		context: "Team project · Prototype phase",
+		summary:
+			"Mobile AR app that checks a child's posture: scan the floor with the back camera, turn the phone around, and track the body live on-device with BlazePose.",
+		overview:
+			"Posture Quest is a Unity mobile app for iOS and Android that turns a child's posture check into a short guided game. The parent scans the floor with the back camera using AR Foundation (ARKit/ARCore), then turns the phone around; the turn is tracked with the attitude sensor so the scanned spot carries over into the front camera's view, where BlazePose running on the Unity Inference Engine tracks 33 body landmarks in real time. A live posture line is drawn over the child's body and turns orange when a joint leaves its range. Everything runs on the phone — frames are processed and discarded, nothing is recorded or uploaded. I build the app while a design team owns the visuals, mascot, and wording, so every name, colour, line of text, and threshold lives in a config file rather than in code.",
+		tags: [
+			{ label: "Unity 6", accent: "on-surface" },
+			{ label: "C#", accent: "primary" },
+			{ label: "AR Foundation", accent: "secondary" },
+			{ label: "BlazePose", accent: "tertiary" },
+		],
+		stack: [
+			{ label: "Engine", value: "Unity 6 LTS · URP · C#" },
+			{ label: "Platforms", value: "iOS & Android" },
+			{ label: "Floor Scan", value: "AR Foundation · ARKit · ARCore" },
+			{ label: "Body Tracking", value: "BlazePose on Unity Inference Engine (ONNX)" },
+			{ label: "Sensors", value: "Input System attitude sensor" },
+			{ label: "Smoothing", value: "One Euro filter" },
+			{ label: "Config", value: "StreamingAssets/config.json" },
+		],
+		features: [
+			{
+				title: "Back-to-Front Camera Handoff",
+				description:
+					"AR Foundation finds the floor with the back camera; when the phone is turned around, the attitude sensor carries the scanned spot into the front camera's view — with an ankle-landmark fallback if the scan fails.",
+			},
+			{
+				title: "On-Device Pose Tracking",
+				description:
+					"BlazePose runs on the Unity Inference Engine with a custom compute shader for image-to-tensor conversion, smoothed with a One Euro filter, and draws a live posture line that flags joints out of range.",
+			},
+			{
+				title: "Privacy-First, Design-Driven",
+				description:
+					"Camera frames never leave the phone. A single-scene state machine drives the check flow, and all names, colours, text, and thresholds load from config so the design team can iterate without code changes.",
+			},
+		],
+		imageAlt: "A person sitting upright with a straight back, silhouetted against the sun.",
+		// Placeholder: Unsplash photo 1506126613408-eca07ce68773 (Unsplash License).
+		image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1600&q=80",
+		repoUrl: "https://github.com/DinVisel/posture-check-app",
+	},
 ];
 
 export const terminalCommands: Record<string, string[]> = {
